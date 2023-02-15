@@ -4,15 +4,17 @@ using System;
 public partial class world : Node3D
 {
 	private Camera3D _camera;
-			 private RayCast3D _raycast = new RayCast3D();
+	private RayCast3D _raycast = new RayCast3D();
+	private Agent _agent;
 
     public override void _Ready()
     {
         _camera = GetNode<Camera3D>("Camera3D");
-			 _raycast.Name = "MouseRaycast";
-			 _camera.AddChild(_raycast);
-			 _raycast.Enabled = true;
-			 _raycast.ClearExceptions();
+		_agent = GetNode<Agent>("Agent");
+		_raycast.Name = "MouseRaycast";
+		_camera.AddChild(_raycast);
+		_raycast.Enabled = true;
+		_raycast.ClearExceptions();
     }
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -36,7 +38,10 @@ public partial class world : Node3D
 			 var intersection = state.IntersectRay(query);
 
 			 if(intersection.Count > 0){
+
 				 GD.Print("WE hit something");
+				 Vector3 hit_point = ((Vector3)intersection["position"]);
+				 _agent.MoveTo(hit_point);
 			 }
 
              // var mouse = eventMouseButton.Position// ;
