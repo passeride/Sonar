@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://c36x6jylxheu5"]
+
+[ext_resource type="PackedScene" uid="uid://nk6hg0ikcw5o" path="res://Scenarios/Oilrig.tscn" id="1_feo8f"]
+[ext_resource type="Script" path="res://world.cs" id="1_l2bnu"]
+[ext_resource type="Environment" uid="uid://bvjjtw6rqpkye" path="res://Resources/base_environment.tres" id="2_xodet"]
+[ext_resource type="PackedScene" uid="uid://dfpi425b1vbgx" path="res://Agent/Agent.tscn" id="3_4pkjk"]
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_l2bnu")
+
+[node name="Oilrig" parent="." instance=ExtResource("1_feo8f")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(-1.78654e-08, -0.912663, 0.408713, -3.98938e-08, 0.408713, 0.912663, -1, 1.77636e-15, -4.37114e-08, 20.6196, 29.459, 0)
+environment = ExtResource("2_xodet")
+
+[node name="Agent" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32887, 1, 27.7309)
