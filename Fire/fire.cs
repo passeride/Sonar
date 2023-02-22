@@ -24,7 +24,7 @@ public partial class fire : Area3D
 		_current_scale = _fire_start_size;
 		area_collision = GetNode<CollisionShape3D>("CollisionShape3D").Shape as SphereShape3D;
 		rb_collision = GetNode<CollisionShape3D>("RigidBody3D/CollisionShape3D").Shape as SphereShape3D;
-		fireball_mesh = GetNode<MeshInstance3D>("CollisionShape3D").Mesh as SphereMesh;
+		fireball_mesh = GetNode<MeshInstance3D>("FireballMesh").Mesh as SphereMesh;
 		scorth_mesh = GetNode<MeshInstance3D>("FloorScortchMesh").Mesh as CylinderMesh;
 		particles = GetNode<CpuParticles3D>("FireParticles");
 	}
@@ -35,6 +35,7 @@ public partial class fire : Area3D
 		area_collision.Radius = scale;
 		rb_collision.Radius = scale;
 		fireball_mesh.Radius = scale;
+		fireball_mesh.Height = scale * 2.0f;
 		scorth_mesh.TopRadius = scale;
 	}
 
@@ -45,6 +46,7 @@ public partial class fire : Area3D
 		if (new_scale <= _fire_end_size)
 		{
 			set_scale(new_scale);
+			_current_scale = new_scale;
 		}
 	}
 }

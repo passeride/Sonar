@@ -6,9 +6,13 @@ colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_5p8km"]
 gradient = SubResource("Gradient_mo3we")
+width = 1024
+height = 1024
 fill = 1
 fill_from = Vector2(0.470874, 0.495146)
 
 [resource]
 transparency = 1
+albedo_color = Color(1, 1, 1, 0.0784314)
 albedo_texture = SubResource("GradientTexture2D_5p8km")
+proximity_fade_distance = 0.79

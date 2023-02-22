@@ -20,10 +20,6 @@ current = true
 
 [node name="MainUI" parent="Camera3D" instance=ExtResource("3_330ga")]
 
-[node name="Fire" parent="." instance=ExtResource("5_44neh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.79722, 0, -5.82653)
-visible = false
-
 [node name="Water" parent="." instance=ExtResource("6_n8jwi")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -35, 0)
 
@@ -33,9 +29,6 @@ environment = ExtResource("2_xodet")
 [node name="Sun" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 0.871496, 0.490402, 0, -0.490402, 0.871496, 0, 0, 0)
 shadow_enabled = true
-
-[node name="SmokeDetetctor" parent="." instance=ExtResource("8_sp67h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.684, 0, -33.8286)
 
 [node name="Agents" type="Node3D" parent="."]
 
@@ -87,5 +80,22 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71212, 1, 38.9306)
 [node name="Agent16" parent="Agents" instance=ExtResource("3_4pkjk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56418, 1, 23.507)
 
-[node name="Fire2" parent="." instance=ExtResource("5_44neh")]
+[node name="Fire" parent="." instance=ExtResource("5_44neh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.8938, 0, -15.9719)
+
+[node name="SmokeDetectors" type="Node3D" parent="."]
+
+[node name="SmokeDetetctor" parent="SmokeDetectors" instance=ExtResource("8_sp67h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.684, 0, -33.8286)
+
+[node name="SmokeDetetctor2" parent="SmokeDetectors" instance=ExtResource("8_sp67h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.684, 0, -7.9622)
+
+[node name="SmokeDetetctor4" parent="SmokeDetectors" instance=ExtResource("8_sp67h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.12605, 0, -38.0981)
+
+[node name="SmokeDetetctor5" parent="SmokeDetectors" instance=ExtResource("8_sp67h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5787, 0, 5.0405)
+
+[node name="SmokeDetetctor6" parent="SmokeDetectors" instance=ExtResource("8_sp67h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5787, 0, 22.7087)

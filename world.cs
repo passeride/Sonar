@@ -24,6 +24,13 @@ public partial class world : Node3D
 	public override void _Process(double delta)
 	{
 	}
+
+	public void FireDetected()
+	{
+		
+        // GetTree().CallGroup("Agents", "MoveTo", hit_point);
+        GetTree().CallGroup("TV", "setShowsEscapeRoute", true);
+	}
 	public override void _Input(InputEvent @event)
 	{
 		if (@event is InputEventMouseButton eventMouseButton &&

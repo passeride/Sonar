@@ -71,4 +71,5 @@ shape = SubResource("SphereShape3D_xli5q")
 mesh = SubResource("SphereMesh_dapym")
 
 [node name="FloorScortchMesh" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CylinderMesh_5y4vs")
