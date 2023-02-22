@@ -15,6 +15,14 @@ public partial class Agent : CharacterBody3D
 
 	}
 
+	private void _on_area_3d_area_entered(Area3D area){
+
+		if(area.IsInGroup("Evac"))
+        {
+            QueueFree();
+        }
+    }
+
     public void MoveTo(Vector3 pos)
     {
 		_agent.TargetPosition = pos;

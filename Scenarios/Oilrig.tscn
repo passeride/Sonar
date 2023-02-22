@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=3 uid="uid://nk6hg0ikcw5o"]
+[gd_scene load_steps=19 format=3 uid="uid://nk6hg0ikcw5o"]
 
 [ext_resource type="Material" uid="uid://cwnbx04rn8a7q" path="res://Resources/Materials/Floor_material.tres" id="1_et426"]
 [ext_resource type="Script" path="res://Scenarios/NavRegionScript.cs" id="1_feuo5"]
 [ext_resource type="PackedScene" uid="uid://kehdbow6ieka" path="res://HeliPad/Helipad.tscn" id="2_2tfwj"]
+[ext_resource type="PackedScene" uid="uid://dkjhflmhj6x2x" path="res://Fire/fire.tscn" id="4_5hy72"]
 [ext_resource type="PackedScene" uid="uid://do6qxmwa6jvy7" path="res://TV/TV.tscn" id="5_tu705"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_5runu"]
@@ -55,6 +56,9 @@ height = 50.0
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_5runu")
 script = ExtResource("1_feuo5")
+
+[node name="NavMeshBaker" type="Timer" parent="NavigationRegion3D"]
+autostart = true
 
 [node name="Floor" type="MeshInstance3D" parent="NavigationRegion3D"]
 material_override = ExtResource("1_et426")
@@ -153,7 +157,7 @@ mesh = SubResource("BoxMesh_gcjkp")
 skeleton = NodePath("../..")
 
 [node name="Wall2" type="MeshInstance3D" parent="NavigationRegion3D/Walls"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.866537, 25, 1, -5.25621)
 mesh = SubResource("BoxMesh_s0c13")
 skeleton = NodePath("../..")
 
@@ -165,9 +169,8 @@ skeleton = NodePath("../..")
 [node name="Helipad" parent="NavigationRegion3D" instance=ExtResource("2_2tfwj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39, 5, -33)
 
-[node name="NavMeshBaker" type="Timer" parent="NavigationRegion3D"]
-wait_time = 5.0
-autostart = true
+[node name="Fire" parent="NavigationRegion3D" instance=ExtResource("4_5hy72")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25.5228)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c6hxoha44ldxx"]
+
+[ext_resource type="PackedScene" uid="uid://y1rnxt8bkjmx" path="res://DropBoat/DropBoat.dae" id="1_iooq2"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_m7ai2"]
+radius = 3.799
+
+[node name="DropBoat" type="Node3D" groups=["Evac"]]
+
+[node name="DropBoat" parent="." instance=ExtResource("1_iooq2")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, -4.88125)
+
+[node name="Area3D" type="Area3D" parent="." groups=["Evac"]]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" groups=["Evac"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.42741)
+shape = SubResource("SphereShape3D_m7ai2")

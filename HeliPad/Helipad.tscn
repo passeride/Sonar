@@ -10,7 +10,7 @@ radius = 10.6911
 [node name="Helipad" parent="." instance=ExtResource("1_6e3p1")]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 
-[node name="RescueArea" type="Area3D" parent="."]
+[node name="RescueArea" type="Area3D" parent="." groups=["Evac"]]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RescueArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RescueArea" groups=["Evac"]]
 shape = SubResource("SphereShape3D_s67o1")

@@ -62,7 +62,6 @@ omni_range = 25.1031
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
 
 [node name="RigidBody3D" type="StaticBody3D" parent="." groups=["Fire"]]
-visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" groups=["Fire"]]
 shape = SubResource("SphereShape3D_xli5q")
