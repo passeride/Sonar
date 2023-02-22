@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dkjhflmhj6x2x"]
+[gd_scene load_steps=18 format=3 uid="uid://dkjhflmhj6x2x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0ad6y"]
 radius = 0.995114
@@ -75,6 +75,21 @@ material = SubResource("StandardMaterial3D_jle6k")
 [sub_resource type="SphereShape3D" id="SphereShape3D_xli5q"]
 radius = 6.57338
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rmgpj"]
+transparency = 1
+blend_mode = 1
+no_depth_test = true
+shading_mode = 0
+albedo_color = Color(0.780392, 0, 0.458824, 0.372549)
+refraction_enabled = true
+distance_fade_mode = 1
+distance_fade_max_distance = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_dapym"]
+material = SubResource("StandardMaterial3D_rmgpj")
+radius = 4.0
+height = 8.0
+
 [node name="Fire" type="Area3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -82,7 +97,8 @@ shape = SubResource("SphereShape3D_0ad6y")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1.68763, 0, 0, 0, 1.68763, 0, 0, 0, 1.68763, 0, 0, 0)
-amount = 8008
+visible = false
+amount = 800
 sub_emitter = NodePath(".")
 lifetime = 1.41
 fixed_fps = 60
@@ -103,6 +119,10 @@ omni_range = 25.1031
 [node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
 
 [node name="RigidBody3D" type="StaticBody3D" parent="."]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
 shape = SubResource("SphereShape3D_xli5q")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_dapym")
