@@ -46,6 +46,7 @@ public partial class world : Node3D
 				 GD.Print("WE hit something");
 				 Vector3 hit_point = ((Vector3)intersection["position"]);
                  GetTree().CallGroup("Agents", "MoveTo", hit_point);
+                 GetTree().CallGroup("TV", "setShowsEscapeRoute", true);
 				 // _agent.MoveTo(hit_point);
 			 }
 		}

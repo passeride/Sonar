@@ -1,0 +1,48 @@
+[gd_scene load_steps=8 format=3 uid="uid://nugoaygtenqq"]
+
+[ext_resource type="PackedScene" uid="uid://cmwxu5lrj18ft" path="res://Smokedetector/Smokedetector.dae" id="1_6rpbo"]
+[ext_resource type="Script" path="res://Smokedetector/SmokeDetetctor.cs" id="1_a4iac"]
+[ext_resource type="Material" uid="uid://cjyjnu5qepahf" path="res://Smokedetector/SmokeDetector_particle.tres" id="2_v31ns"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7oocs"]
+material = ExtResource("2_v31ns")
+
+[sub_resource type="Curve" id="Curve_0is8w"]
+max_value = 10.0
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 10), 28.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_fthqr"]
+colors = PackedColorArray(1, 0, 0, 1, 0.357572, 1.68458e-07, 0.199654, 0)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5frmf"]
+radius = 26.0
+
+[node name="SmokeDetetctor" type="Node3D" groups=["SmokeDetector"]]
+script = ExtResource("1_a4iac")
+
+[node name="Smokedetector" parent="." instance=ExtResource("1_6rpbo")]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, -4.37114e-07, 5, 0)
+
+[node name="SoundViz" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+visible = false
+amount = 4
+lifetime = 4.0
+fixed_fps = 30
+draw_order = 1
+mesh = SubResource("PlaneMesh_7oocs")
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_amount_max = 10.0
+scale_amount_curve = SubResource("Curve_0is8w")
+color_ramp = SubResource("Gradient_fthqr")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.282562, 0, -0.383934)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, 0)
+shape = SubResource("SphereShape3D_5frmf")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://sbkyob63dt3f"]
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartBtn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -42.0
+offset_right = 97.0
+offset_bottom = -11.0
+grow_vertical = 0
+text = "Start Sim"
+
+[node name="ResetBtn" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 14.0
+offset_top = -80.0
+offset_right = 93.0
+offset_bottom = -49.0
+grow_vertical = 0
+text = "Reset Sim"
+
+[node name="TimerLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 14.0
+offset_right = 215.0
+offset_bottom = 131.0
+text = "Timer: 0.0"

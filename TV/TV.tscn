@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://do6qxmwa6jvy7"]
+
+[ext_resource type="Script" path="res://TV/TV.cs" id="1_8hmfr"]
+[ext_resource type="PackedScene" uid="uid://dtl6qvwky012u" path="res://TV/TV.dae" id="1_gyaht"]
+[ext_resource type="Material" uid="uid://d1baamkxp4cc4" path="res://TV/TV_Frame.tres" id="3_3x45j"]
+[ext_resource type="Material" uid="uid://blks0frdtmpab" path="res://TV/TV_Screen.tres" id="4_kqtfc"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qeuvi"]
+size = Vector3(4.06738, 2.14931, 0.497385)
+
+[node name="TV" type="Node3D" groups=["TV"]]
+script = ExtResource("1_8hmfr")
+
+[node name="TV" parent="." instance=ExtResource("1_gyaht")]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3, 0.121936)
+
+[node name="TV" parent="TV" index="0"]
+surface_material_override/0 = ExtResource("3_3x45j")
+surface_material_override/1 = ExtResource("4_kqtfc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.12488)
+shape = SubResource("BoxShape3D_qeuvi")
+
+[node name="TV_Light" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0.567603)
+visible = false
+light_color = Color(0, 0.509804, 0.298039, 1)
+light_energy = 7.552
+shadow_enabled = true
+omni_range = 12.936
+
+[editable path="TV"]
