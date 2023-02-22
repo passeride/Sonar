@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dkjhflmhj6x2x"]
+[gd_scene load_steps=16 format=3 uid="uid://dkjhflmhj6x2x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_0ad6y"]
 radius = 0.995114
@@ -72,6 +72,9 @@ material = SubResource("StandardMaterial3D_jle6k")
 
 [sub_resource type="Skin" id="Skin_knraf"]
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_xli5q"]
+radius = 6.57338
+
 [node name="Fire" type="Area3D"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -79,7 +82,7 @@ shape = SubResource("SphereShape3D_0ad6y")
 
 [node name="GPUParticles3D" type="GPUParticles3D" parent="."]
 transform = Transform3D(1.68763, 0, 0, 0, 1.68763, 0, 0, 0, 1.68763, 0, 0, 0)
-amount = 800
+amount = 8008
 sub_emitter = NodePath(".")
 lifetime = 1.41
 fixed_fps = 60
@@ -96,3 +99,10 @@ light_color = Color(1, 0.517647, 0.686275, 1)
 light_energy = 10.036
 shadow_enabled = true
 omni_range = 25.1031
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+
+[node name="RigidBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+shape = SubResource("SphereShape3D_xli5q")
