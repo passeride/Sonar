@@ -5,6 +5,9 @@ public partial class Agent : CharacterBody3D
 {
     private NavigationAgent3D _agent;
 
+	[Signal]
+	public delegate void GoToPositionEventHandler(Vector3 pos);
+
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

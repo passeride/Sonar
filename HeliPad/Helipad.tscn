@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://kehdbow6ieka"]
+
+[ext_resource type="PackedScene" uid="uid://c5qu4ogimqi5m" path="res://HeliPad/Helipad.dae" id="1_6e3p1"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_s67o1"]
+radius = 10.6911
+
+[node name="Helipad" type="Node3D"]
+
+[node name="Helipad" parent="." instance=ExtResource("1_6e3p1")]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+
+[node name="RescueArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RescueArea"]
+shape = SubResource("SphereShape3D_s67o1")

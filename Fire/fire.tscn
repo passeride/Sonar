@@ -1,0 +1,98 @@
+[gd_scene load_steps=15 format=3 uid="uid://dkjhflmhj6x2x"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_0ad6y"]
+radius = 0.995114
+
+[sub_resource type="Curve" id="Curve_7y8d5"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_nb0va"]
+curve = SubResource("Curve_7y8d5")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_qjyvw"]
+lifetime_randomness = 0.73
+emission_shape = 1
+emission_sphere_radius = 1.0
+spread = 91.51
+gravity = Vector3(0, 10, 0)
+radial_accel_min = -4.49
+radial_accel_max = 4.49
+tangential_accel_max = 11.24
+damping_max = 10.11
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_nb0va")
+hue_variation_min = 0.19
+hue_variation_max = 1.0
+turbulence_noise_strength = 0.55
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 1
+
+[sub_resource type="Gradient" id="Gradient_bxykr"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xjnyl"]
+gradient = SubResource("Gradient_bxykr")
+fill = 1
+fill_from = Vector2(0.488764, 0.516854)
+fill_to = Vector2(0.91573, 0.252809)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m6h7a"]
+transparency = 1
+blend_mode = 1
+albedo_color = Color(0.988235, 0, 0.137255, 1)
+albedo_texture = SubResource("GradientTexture2D_xjnyl")
+emission_enabled = true
+billboard_mode = 1
+
+[sub_resource type="QuadMesh" id="QuadMesh_3pvkt"]
+material = SubResource("StandardMaterial3D_m6h7a")
+
+[sub_resource type="Gradient" id="Gradient_6poi0"]
+offsets = PackedFloat32Array(0, 0.365217)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_gly0y"]
+frequency = 0.023
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_yp8vq"]
+in_3d_space = true
+color_ramp = SubResource("Gradient_6poi0")
+noise = SubResource("FastNoiseLite_gly0y")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jle6k"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_texture = SubResource("NoiseTexture2D_yp8vq")
+roughness = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_j5p63"]
+material = SubResource("StandardMaterial3D_jle6k")
+
+[sub_resource type="Skin" id="Skin_knraf"]
+
+[node name="Fire" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_0ad6y")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1.68763, 0, 0, 0, 1.68763, 0, 0, 0, 1.68763, 0, 0, 0)
+amount = 800
+sub_emitter = NodePath(".")
+lifetime = 1.41
+fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_qjyvw")
+draw_passes = 2
+draw_pass_1 = SubResource("QuadMesh_3pvkt")
+draw_pass_2 = SubResource("SphereMesh_j5p63")
+draw_skin = SubResource("Skin_knraf")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.05316, 0)
+visible = false
+light_color = Color(1, 0.517647, 0.686275, 1)
+light_energy = 10.036
+shadow_enabled = true
+omni_range = 25.1031

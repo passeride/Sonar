@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dipem7tqvton4"]
+
+[ext_resource type="Shader" path="res://Water/Water.gdshader" id="1_y3orm"]
+[ext_resource type="Material" uid="uid://sw67mpnvln0p" path="res://Water/Water.material" id="2_hj7qn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fovm6"]
+render_priority = 0
+shader = ExtResource("1_y3orm")
+shader_parameter/wave_speed = 0.5
+shader_parameter/wave_a = Quaternion(1, 1, 0.35, 3)
+shader_parameter/wave_b = Quaternion(1, 0.6, 0.3, 1.55)
+shader_parameter/wave_c = Quaternion(1, 1.3, 0.25, 0.9)
+shader_parameter/sampler_scale = Vector2(0.25, 0.25)
+shader_parameter/sampler_direction = Vector2(0.05, 0.04)
+shader_parameter/uv_sampler_scale = Vector2(0.25, 0.25)
+shader_parameter/uv_sampler_strength = 0.04
+shader_parameter/foam_level = 0.5
+shader_parameter/refraction = 0.075
+shader_parameter/color_deep = null
+shader_parameter/color_shallow = null
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/projector = null
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jnc5n"]
+material = ExtResource("2_hj7qn")
+size = Vector2(1024, 1024)
+subdivide_width = 256
+subdivide_depth = 256
+
+[node name="Water" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_fovm6")
+mesh = SubResource("PlaneMesh_jnc5n")

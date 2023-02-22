@@ -7,6 +7,10 @@ public partial class world : Node3D
 	private RayCast3D _raycast = new RayCast3D();
 	private Agent _agent;
 
+
+	// [Signal]
+	// public delegate void PointClickPositionEventHandler(Vector3 pos);
+
     public override void _Ready()
     {
         _camera = GetNode<Camera3D>("Camera3D");
@@ -41,24 +45,9 @@ public partial class world : Node3D
 
 				 GD.Print("WE hit something");
 				 Vector3 hit_point = ((Vector3)intersection["position"]);
-				 _agent.MoveTo(hit_point);
+                 GetTree().CallGroup("Agents", "MoveTo", hit_point);
+				 // _agent.MoveTo(hit_point);
 			 }
-
-             // var mouse = eventMouseButton.Position// ;
-			 // var from = _camera.ProjectRayOrigin(mouse);
-			 // var to = _camera.ProjectRayNormal(mouse) * 1000f;
-
-			 // _raycast.TargetPosition = to;
-			 // // _raycast.
-			 // if ( _raycast.IsColliding() ) {
-			 // 	 GD.Print("Found something");
-
-			 // 	 }
-
-
-
-
 		}
 	}
-	
 }

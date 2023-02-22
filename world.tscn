@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://c36x6jylxheu5"]
+[gd_scene load_steps=7 format=3 uid="uid://c36x6jylxheu5"]
 
 [ext_resource type="PackedScene" uid="uid://nk6hg0ikcw5o" path="res://Scenarios/Oilrig.tscn" id="1_feo8f"]
 [ext_resource type="Script" path="res://world.cs" id="1_l2bnu"]
 [ext_resource type="Environment" uid="uid://bvjjtw6rqpkye" path="res://Resources/base_environment.tres" id="2_xodet"]
 [ext_resource type="PackedScene" uid="uid://dfpi425b1vbgx" path="res://Agent/Agent.tscn" id="3_4pkjk"]
+[ext_resource type="PackedScene" uid="uid://dkjhflmhj6x2x" path="res://Fire/fire.tscn" id="5_44neh"]
+[ext_resource type="PackedScene" uid="uid://dipem7tqvton4" path="res://Water/Water.tscn" id="6_n8jwi"]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_l2bnu")
@@ -11,8 +13,67 @@ script = ExtResource("1_l2bnu")
 [node name="Oilrig" parent="." instance=ExtResource("1_feo8f")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1.78654e-08, -0.912663, 0.408713, -3.98938e-08, 0.408713, 0.912663, -1, 1.77636e-15, -4.37114e-08, 20.6196, 29.459, 0)
-environment = ExtResource("2_xodet")
+transform = Transform3D(-1.78654e-08, -0.680286, 0.732947, -3.98938e-08, 0.732947, 0.680286, -1, -1.70865e-08, -4.02336e-08, 43.1839, 29.9707, -4.23535e-07)
+current = true
 
 [node name="Agent" parent="." instance=ExtResource("3_4pkjk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.32887, 1, 27.7309)
+
+[node name="Agent2" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.80397, 1, 26.6579)
+
+[node name="Agent3" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.2579, 1, 32.159)
+
+[node name="Agent4" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5342, 1, 16.7353)
+
+[node name="Agent5" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.7115, 1, -22.0405)
+
+[node name="Agent6" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 17.8443, 1, -23.1135)
+
+[node name="Agent7" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.217515, 1, -17.6124)
+
+[node name="Agent8" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.49382, 1, -33.036)
+
+[node name="Agent9" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84853, 1, 4.36573)
+
+[node name="Agent10" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.9814, 1, 3.29272)
+
+[node name="Agent11" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.08048, 1, 8.79379)
+
+[node name="Agent12" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.35679, 1, -6.62983)
+
+[node name="Agent13" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6411, 1, 34.5026)
+
+[node name="Agent14" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.774, 1, 33.4296)
+
+[node name="Agent15" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71212, 1, 38.9306)
+
+[node name="Agent16" parent="." instance=ExtResource("3_4pkjk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56418, 1, 23.507)
+
+[node name="Fire" parent="." instance=ExtResource("5_44neh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.79722, 0, -5.82653)
+visible = false
+
+[node name="Water" parent="." instance=ExtResource("6_n8jwi")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -35, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_xodet")
+
+[node name="Sun" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 0.871496, 0.490402, 0, -0.490402, 0.871496, 0, 0, 0)
+shadow_enabled = true

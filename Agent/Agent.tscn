@@ -6,7 +6,7 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bqhv1"]
 
-[node name="Agent" type="CharacterBody3D"]
+[node name="Agent" type="CharacterBody3D" groups=["Agents"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 script = ExtResource("1_aep6d")
 
@@ -25,6 +25,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.9412, 0.337851, 0, -0.337851, 0.9412, 0, 0.569009, -0.256931)
-light_energy = 7.4
+visible = false
+light_color = Color(0.776471, 0.6, 0.54902, 1)
+light_energy = 8.924
+light_specular = 0.0
 shadow_enabled = true
 spot_range = 17.3649
