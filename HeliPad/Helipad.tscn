@@ -13,4 +13,5 @@ transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 [node name="RescueArea" type="Area3D" parent="." groups=["Evac"]]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RescueArea" groups=["Evac"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.79468, -1.38985, 0)
 shape = SubResource("SphereShape3D_s67o1")

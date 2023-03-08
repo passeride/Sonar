@@ -6,7 +6,7 @@
 [ext_resource type="Material" uid="uid://blks0frdtmpab" path="res://TV/TV_Screen.tres" id="4_kqtfc"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qeuvi"]
-size = Vector3(4.06738, 2.14931, 0.497385)
+size = Vector3(2.69688, 1.50147, 0.497385)
 
 [node name="TV" type="Node3D" groups=["TV"]]
 script = ExtResource("1_8hmfr")
@@ -22,7 +22,7 @@ surface_material_override/1 = ExtResource("4_kqtfc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.12488)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.473303)
 shape = SubResource("BoxShape3D_qeuvi")
 
 [node name="TV_Light" type="OmniLight3D" parent="."]

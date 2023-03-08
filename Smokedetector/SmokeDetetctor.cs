@@ -21,6 +21,7 @@ public partial class SmokeDetetctor : Node3D
         _sound_viz.Visible = true;
 
         GetTree().CallGroup("TV", "setShowsEscapeRoute", true);
+        GetTree().CallGroup("Agents", "CheckSurroundings");
     }
 
     public void SetSmokedetectorRange(float range)

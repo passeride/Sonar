@@ -53,5 +53,12 @@ public partial class MainUI : Control
         if (_drill_running)
             _time_label.Text =
                 "Timer: " + (Godot.Time.GetUnixTimeFromSystem() - _timestamp_start_drill).ToString("0:0.00##");
+
+		if (Input.IsActionJustPressed("start_sim")){
+			_on_start_btn_pressed();
+		}
+		if (Input.IsActionJustPressed("reset_sim")){
+			// _on_reset
+			}
     }
 }

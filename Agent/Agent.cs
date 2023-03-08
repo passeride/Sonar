@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class Agent : CharacterBody3D
 {
@@ -32,15 +33,17 @@ public partial class Agent : CharacterBody3D
 
     public void CheckSurroundings()
     {
-        var TVs = GetTree().GetNodesInGroup("TV");
+        var TVs = GetTree().GetNodesInGroup("TV").ToList();
 
-        var world = GetWorld3D().DirectSpaceState;
-        foreach (Node3D tv in TVs)
+        var ordered_tvs = TVs.OrderBy(node => (node as Node3D).GlobalPosition.DistanceTo(GlobalPosition));
+
+        foreach (Node3D tv in ordered_tvs)
         {
-            _see_raycast.TargetPosition = _see_raycast.GlobalPosition - tv.GlobalPosition;
+            _see_raycast.TargetPosition = tv.GlobalPosition - _see_raycast.GlobalPosition;
             _see_raycast.ForceRaycastUpdate();
 
             var coll = _see_raycast.GetCollider() as Node3D;
+            GD.Print(coll);
             if (coll == null)
                 continue;
 
@@ -48,7 +51,10 @@ public partial class Agent : CharacterBody3D
             {
                 var evac_point = (coll.GetParent<TV>()).RequestEvac();
                 if (evac_point != null)
+                {
                     MoveTo((Vector3)evac_point);
+                    break;
+                }
             }
         }
     }

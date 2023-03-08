@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c36x6jylxheu5"]
+[gd_scene load_steps=8 format=3 uid="uid://c36x6jylxheu5"]
 
 [ext_resource type="Script" path="res://world.cs" id="1_l2bnu"]
 [ext_resource type="Environment" uid="uid://bvjjtw6rqpkye" path="res://Resources/base_environment.tres" id="2_xodet"]
@@ -7,18 +7,23 @@
 [ext_resource type="PackedScene" uid="uid://dipem7tqvton4" path="res://Water/Water.tscn" id="6_n8jwi"]
 [ext_resource type="PackedScene" uid="uid://b5ffxfwtxw5ix" path="res://Scenarios/Huldra/Huldra.tscn" id="9_v4tw8"]
 
+[sub_resource type="CylinderMesh" id="CylinderMesh_aavcc"]
+top_radius = 10.0
+bottom_radius = 10.0
+height = 50.0
+
 [node name="World" type="Node3D"]
 script = ExtResource("1_l2bnu")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0.237282, 73.2548, 3.08693)
+transform = Transform3D(-3.64642e-08, -0.834204, 0.551457, 2.41049e-08, 0.551457, 0.834204, -1, 4.37114e-08, 1.77636e-15, 68.9427, 100.353, -10.1139)
 current = true
+fov = 38.8801
 
 [node name="MainUI" parent="Camera3D" instance=ExtResource("3_330ga")]
 
 [node name="Water" parent="." instance=ExtResource("6_n8jwi")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, -35, 0)
-visible = false
+transform = Transform3D(0.523, 0, 0, 0, 0.523, 0, 0, 0, 0.523, 0, -35, 0)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = ExtResource("2_xodet")
@@ -79,3 +84,19 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56418, 1, 23.507)
 
 [node name="Huldra" parent="." instance=ExtResource("9_v4tw8")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="Foot" type="MeshInstance3D" parent="Huldra"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.3268, -26.9228, 10.3847)
+mesh = SubResource("CylinderMesh_aavcc")
+
+[node name="Foot2" type="MeshInstance3D" parent="Huldra"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.4549, -26.9228, 10.3847)
+mesh = SubResource("CylinderMesh_aavcc")
+
+[node name="Foot3" type="MeshInstance3D" parent="Huldra"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.3268, -26.9228, -25.231)
+mesh = SubResource("CylinderMesh_aavcc")
+
+[node name="Foot4" type="MeshInstance3D" parent="Huldra"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.4549, -26.9228, -25.231)
+mesh = SubResource("CylinderMesh_aavcc")
