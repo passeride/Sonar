@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://sbkyob63dt3f"]
+[gd_scene load_steps=4 format=3 uid="uid://sbkyob63dt3f"]
 
 [ext_resource type="Script" path="res://UI/MainUI.cs" id="1_wiage"]
+[ext_resource type="Theme" uid="uid://c1463wak03srw" path="res://Resources/UITheme.tres" id="2_vtvwu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1l55u"]
+font_size = 26
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
@@ -11,30 +15,6 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wiage")
 
-[node name="StartBtn" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 14.0
-offset_top = -42.0
-offset_right = 97.0
-offset_bottom = -11.0
-grow_vertical = 0
-text = "Start Sim"
-
-[node name="ResetBtn" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 14.0
-offset_top = -80.0
-offset_right = 93.0
-offset_bottom = -49.0
-grow_vertical = 0
-text = "Reset Sim"
-
 [node name="TimerLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 19.0
@@ -43,31 +23,90 @@ offset_right = 215.0
 offset_bottom = 131.0
 text = "Timer: 0.0"
 
-[node name="ShowFire" type="CheckBox" parent="."]
+[node name="Settings" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -278.0
+offset_top = -203.0
+offset_bottom = 203.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="Settings" type="VBoxContainer" parent="Settings"]
+layout_mode = 2
+theme = ExtResource("2_vtvwu")
+
+[node name="Label" type="Label" parent="Settings/Settings"]
+layout_mode = 2
+text = "Settings"
+label_settings = SubResource("LabelSettings_1l55u")
+
+[node name="SmokeDetector Range Label" type="Label" parent="Settings/Settings"]
+layout_mode = 2
+text = "Smoke detector range"
+
+[node name="SmokeDetector Slider" type="HSlider" parent="Settings/Settings"]
+layout_mode = 2
+min_value = 1.0
+max_value = 25.0
+value = 1.0
+rounded = true
+tick_count = 5
+
+[node name="Fire growth" type="Label" parent="Settings/Settings"]
+layout_mode = 2
+text = "Fire Growth pr sec"
+
+[node name="Fire growth slider" type="HSlider" parent="Settings/Settings"]
+layout_mode = 2
+min_value = 1.0
+max_value = 25.0
+value = 1.0
+rounded = true
+tick_count = 5
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.736
+anchor_right = 0.11
 anchor_bottom = 1.0
-offset_left = 14.0
-offset_top = -122.0
-offset_right = 118.0
-offset_bottom = -91.0
+offset_left = 20.0
+offset_top = 0.0719604
+offset_right = 0.279991
+offset_bottom = -20.0
 grow_vertical = 0
+alignment = 1
+
+[node name="ShowFire" type="CheckBox" parent="Buttons"]
+layout_mode = 2
 button_pressed = true
 text = "Show Fire"
 
-[node name="ShowPeople" type="CheckBox" parent="."]
-layout_mode = 1
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 14.0
-offset_top = -146.0
-offset_right = 141.0
-offset_bottom = -115.0
-grow_vertical = 0
+[node name="ShowPeople" type="CheckBox" parent="Buttons"]
+layout_mode = 2
 button_pressed = true
 text = "Show People"
 
-[connection signal="toggled" from="ShowFire" to="." method="_on_show_fire_toggled"]
-[connection signal="toggled" from="ShowPeople" to="." method="_on_show_people_toggled"]
+[node name="StartBtn" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Start Sim"
+
+[node name="Settings" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Show Settings"
+
+[node name="ResetBtn" type="Button" parent="Buttons"]
+layout_mode = 2
+text = "Reset Sim"
+
+[connection signal="value_changed" from="Settings/Settings/SmokeDetector Slider" to="." method="_on_smoke_detector_slider_value_changed"]
+[connection signal="value_changed" from="Settings/Settings/Fire growth slider" to="." method="_on_fire_growth_slider_value_changed"]
+[connection signal="toggled" from="Buttons/ShowFire" to="." method="_on_show_fire_toggled"]
+[connection signal="toggled" from="Buttons/ShowPeople" to="." method="_on_show_people_toggled"]
+[connection signal="pressed" from="Buttons/Settings" to="." method="_on_settings_pressed"]

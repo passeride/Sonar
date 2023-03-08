@@ -39,6 +39,10 @@ public partial class fire : Area3D
 		scorth_mesh.TopRadius = scale;
 	}
 
+	public void SetGrowthSpeed(float growthPrSecond) {
+		_fire_expand_pr_seconds = growthPrSecond;
+	}
+
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{

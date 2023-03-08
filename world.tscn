@@ -1,6 +1,5 @@
 [gd_scene load_steps=9 format=3 uid="uid://c36x6jylxheu5"]
 
-[ext_resource type="PackedScene" uid="uid://nk6hg0ikcw5o" path="res://Scenarios/Oilrig.tscn" id="1_feo8f"]
 [ext_resource type="Script" path="res://world.cs" id="1_l2bnu"]
 [ext_resource type="Environment" uid="uid://bvjjtw6rqpkye" path="res://Resources/base_environment.tres" id="2_xodet"]
 [ext_resource type="PackedScene" uid="uid://dfpi425b1vbgx" path="res://Agent/Agent.tscn" id="3_4pkjk"]
@@ -8,11 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://dipem7tqvton4" path="res://Water/Water.tscn" id="6_n8jwi"]
 [ext_resource type="PackedScene" uid="uid://nugoaygtenqq" path="res://Smokedetector/SmokeDetetctor.tscn" id="8_sp67h"]
 [ext_resource type="PackedScene" uid="uid://c6hxoha44ldxx" path="res://DropBoat/DropBoat.tscn" id="9_6x0da"]
+[ext_resource type="PackedScene" uid="uid://b5ffxfwtxw5ix" path="res://Scenarios/Huldra/Huldra.tscn" id="9_v4tw8"]
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_l2bnu")
-
-[node name="Oilrig" parent="." instance=ExtResource("1_feo8f")]
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1.78654e-08, -0.680286, 0.732947, -3.98938e-08, 0.732947, 0.680286, -1, -1.70865e-08, -4.02336e-08, 43.1839, 29.9707, -4.23535e-07)
@@ -96,12 +94,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.12605, 0, -38.0981)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5787, 0, 5.0405)
 
 [node name="SmokeDetetctor6" parent="SmokeDetectors" instance=ExtResource("8_sp67h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5787, 0, 22.7087)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5318, 0, 22.7924)
 
 [node name="Evacs" type="Node3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.5432, 0, 35.7274)
 
 [node name="DropBoat" parent="Evacs" instance=ExtResource("9_6x0da")]
-transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, 26.2383, 0.167714, 36.5162)
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, 3.74326, 0.167714, 4.05278)
 
 [node name="DropBoat2" parent="Evacs" instance=ExtResource("9_6x0da")]
-transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, 26.2383, 0.167714, 31.0583)
+transform = Transform3D(-4.37114e-08, 0.5, -0.866025, 0, 0.866025, 0.5, 1, 2.18557e-08, -3.78552e-08, 3.74326, 0.167714, -1.40512)
+
+[node name="Huldra" parent="." instance=ExtResource("9_v4tw8")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

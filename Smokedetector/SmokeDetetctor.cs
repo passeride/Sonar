@@ -21,6 +21,10 @@ public partial class SmokeDetetctor : Node3D
 		_sound_viz.Visible = true;
 	}
 
+	public void SetSmokedetectorRange(float range){
+		(GetNode<CollisionShape3D>("Area3D/SphereCollision").Shape as SphereShape3D).Radius = range;
+	}
+
 	private void _on_area_3d_area_entered(Area3D area){
 		if(area.IsInGroup("Fire"))
 		{
