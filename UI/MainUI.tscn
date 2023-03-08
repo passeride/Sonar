@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://sbkyob63dt3f"]
+[gd_scene load_steps=9 format=3 uid="uid://sbkyob63dt3f"]
 
 [ext_resource type="Script" path="res://UI/MainUI.cs" id="1_wiage"]
 [ext_resource type="Theme" uid="uid://c1463wak03srw" path="res://Resources/UITheme.tres" id="2_vtvwu"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cxk2ff2yi37m4" path="res://Icons/users.svg" id="4_1nv16"]
 [ext_resource type="Texture2D" uid="uid://cdyamjnqofms2" path="res://Icons/gear.svg" id="4_td8j0"]
 [ext_resource type="Texture2D" uid="uid://cl2rn0qgcdiib" path="res://Icons/backward-fast.svg" id="5_ahj2s"]
+[ext_resource type="Texture2D" uid="uid://cdn35mlixekl1" path="res://Icons/hourglass-start.svg" id="7_pxawn"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1l55u"]
 font_size = 26
@@ -21,10 +22,10 @@ script = ExtResource("1_wiage")
 
 [node name="TimerLabel" type="RichTextLabel" parent="."]
 layout_mode = 0
-offset_left = 19.0
-offset_top = 14.0
-offset_right = 215.0
-offset_bottom = 131.0
+offset_left = 59.0
+offset_top = 20.0
+offset_right = 684.0
+offset_bottom = 264.0
 text = "Timer: 0.0"
 
 [node name="Settings" type="PanelContainer" parent="."]
@@ -128,6 +129,15 @@ icon = ExtResource("5_ahj2s")
 alignment = 2
 icon_alignment = 2
 expand_icon = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 51.0
+offset_bottom = 50.0
+texture = ExtResource("7_pxawn")
+expand_mode = 1
 
 [connection signal="value_changed" from="Settings/Settings/SmokeDetector Slider" to="." method="_on_smoke_detector_slider_value_changed"]
 [connection signal="value_changed" from="Settings/Settings/Fire growth slider" to="." method="_on_fire_growth_slider_value_changed"]

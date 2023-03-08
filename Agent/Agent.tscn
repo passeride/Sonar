@@ -41,4 +41,10 @@ spot_range = 17.3649
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_d0c6b")
 
+[node name="SeeCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.32769, 0)
+target_position = Vector3(0, 0, 1000)
+debug_shape_custom_color = Color(0.537255, 0.607843, 0.941176, 1)
+debug_shape_thickness = 5
+
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
