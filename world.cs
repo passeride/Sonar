@@ -32,10 +32,10 @@ public partial class world : Node3D
 	}
 	public override void _Input(InputEvent @event)
 	{
+        return; // Disable click to summon
 		if (@event is InputEventMouseButton eventMouseButton &&
 			eventMouseButton.Pressed)
 		{
-			 GD.Print("Right-clicked!");
              Vector3 origin =
                  _camera.ProjectRayOrigin(eventMouseButton.Position);
              Vector3 direction =
@@ -49,7 +49,6 @@ public partial class world : Node3D
 
 			 if(intersection.Count > 0){
 
-				 GD.Print("WE hit something");
 				 Vector3 hit_point = ((Vector3)intersection["position"]);
                  GetTree().CallGroup("Agents", "MoveTo", hit_point);
                  GetTree().CallGroup("TV", "setShowsEscapeRoute", true);

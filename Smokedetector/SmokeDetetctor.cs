@@ -3,41 +3,43 @@ using System;
 
 public partial class SmokeDetetctor : Node3D
 {
-	[Export]
-	private bool _has_detected_smoke = false;
+    [Export]
+    private bool _has_detected_smoke = false;
 
-	private CpuParticles3D _sound_viz;
-	public override void _Ready()
-	{
-		_sound_viz = GetNode<CpuParticles3D>("SoundViz");
-	}
+    private CpuParticles3D _sound_viz;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    public override void _Ready()
+    {
+        _sound_viz = GetNode<CpuParticles3D>("SoundViz");
+    }
 
-	public void ActivateAlarm(){
-		_sound_viz.Visible = true;
-	}
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta) { }
 
-	public void SetSmokedetectorRange(float range){
-		(GetNode<CollisionShape3D>("Area3D/SphereCollision").Shape as SphereShape3D).Radius = range;
-	}
+    public void ActivateAlarm()
+    {
+        _sound_viz.Visible = true;
 
-	private void _on_area_3d_area_entered(Area3D area){
-		if(area.IsInGroup("Fire"))
-		{
-			_has_detected_smoke = true;
-			GetNode<world>("/root/World").FireDetected();
-			ActivateAlarm();
-		}
-	}
-	private void _on_area_3d_body_entered(Node3D body)
-	{
-		// Replace with function body.
-	}
+        GetTree().CallGroup("TV", "setShowsEscapeRoute", true);
+    }
 
+    public void SetSmokedetectorRange(float range)
+    {
+        (GetNode<CollisionShape3D>("Area3D/SphereCollision").Shape as SphereShape3D).Radius = range;
+    }
+
+    private void _on_area_3d_area_entered(Area3D area)
+    {
+        if (area.IsInGroup("Fire"))
+        {
+            _has_detected_smoke = true;
+            GetNode<world>("/root/World").FireDetected();
+            ActivateAlarm();
+        }
+    }
+
+    private void _on_area_3d_body_entered(Node3D body)
+    {
+        // Replace with function body.
+    }
 }
-
-

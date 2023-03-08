@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://c36x6jylxheu5"]
+[gd_scene load_steps=8 format=3 uid="uid://c36x6jylxheu5"]
 
 [ext_resource type="Script" path="res://world.cs" id="1_l2bnu"]
 [ext_resource type="Environment" uid="uid://bvjjtw6rqpkye" path="res://Resources/base_environment.tres" id="2_xodet"]
 [ext_resource type="PackedScene" uid="uid://dfpi425b1vbgx" path="res://Agent/Agent.tscn" id="3_4pkjk"]
 [ext_resource type="PackedScene" uid="uid://sbkyob63dt3f" path="res://UI/MainUI.tscn" id="3_330ga"]
 [ext_resource type="PackedScene" uid="uid://dipem7tqvton4" path="res://Water/Water.tscn" id="6_n8jwi"]
-[ext_resource type="PackedScene" uid="uid://nugoaygtenqq" path="res://Smokedetector/SmokeDetetctor.tscn" id="8_sp67h"]
 [ext_resource type="PackedScene" uid="uid://c6hxoha44ldxx" path="res://DropBoat/DropBoat.tscn" id="9_6x0da"]
 [ext_resource type="PackedScene" uid="uid://b5ffxfwtxw5ix" path="res://Scenarios/Huldra/Huldra.tscn" id="9_v4tw8"]
 
@@ -13,7 +12,7 @@
 script = ExtResource("1_l2bnu")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-1.78654e-08, -0.680286, 0.732947, -3.98938e-08, 0.732947, 0.680286, -1, -1.70865e-08, -4.02336e-08, 43.1839, 29.9707, -4.23535e-07)
+transform = Transform3D(-4.37114e-08, -1, -4.37114e-08, 0, -4.37114e-08, 1, -1, 4.37114e-08, 1.91069e-15, 0.237282, 73.2548, 3.08693)
 current = true
 
 [node name="MainUI" parent="Camera3D" instance=ExtResource("3_330ga")]
@@ -77,23 +76,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.71212, 1, 38.9306)
 
 [node name="Agent16" parent="Agents" instance=ExtResource("3_4pkjk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.56418, 1, 23.507)
-
-[node name="SmokeDetectors" type="Node3D" parent="."]
-
-[node name="SmokeDetetctor" parent="SmokeDetectors" instance=ExtResource("8_sp67h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.684, 0, -33.8286)
-
-[node name="SmokeDetetctor2" parent="SmokeDetectors" instance=ExtResource("8_sp67h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.684, 0, -7.9622)
-
-[node name="SmokeDetetctor4" parent="SmokeDetectors" instance=ExtResource("8_sp67h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.12605, 0, -38.0981)
-
-[node name="SmokeDetetctor5" parent="SmokeDetectors" instance=ExtResource("8_sp67h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.5787, 0, 5.0405)
-
-[node name="SmokeDetetctor6" parent="SmokeDetectors" instance=ExtResource("8_sp67h")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.5318, 0, 22.7924)
 
 [node name="Evacs" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 12.5432, 0, 35.7274)

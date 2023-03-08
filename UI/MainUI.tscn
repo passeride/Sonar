@@ -109,4 +109,5 @@ text = "Reset Sim"
 [connection signal="value_changed" from="Settings/Settings/Fire growth slider" to="." method="_on_fire_growth_slider_value_changed"]
 [connection signal="toggled" from="Buttons/ShowFire" to="." method="_on_show_fire_toggled"]
 [connection signal="toggled" from="Buttons/ShowPeople" to="." method="_on_show_people_toggled"]
+[connection signal="pressed" from="Buttons/StartBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="Buttons/Settings" to="." method="_on_settings_pressed"]

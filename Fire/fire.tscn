@@ -30,6 +30,8 @@ rings = 1
 cap_bottom = false
 
 [node name="Fire" type="Area3D" groups=["Fire"]]
+monitoring = false
+monitorable = false
 script = ExtResource("1_o0vfu")
 _fire_start_size = 1.0
 _fire_expand_pr_seconds = 0.5
