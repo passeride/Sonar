@@ -67,6 +67,7 @@ omni_range = 25.1031
 shape = SubResource("SphereShape3D_xli5q")
 
 [node name="FireballMesh" type="MeshInstance3D" parent="."]
+layers = 2
 mesh = SubResource("SphereMesh_dapym")
 
 [node name="FloorScortchMesh" type="MeshInstance3D" parent="."]

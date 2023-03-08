@@ -14,7 +14,6 @@ public partial class world : Node3D
     public override void _Ready()
     {
         _camera = GetNode<Camera3D>("Camera3D");
-		_agent = GetNode<Agent>("Agent");
 		_raycast.Name = "MouseRaycast";
 		_camera.AddChild(_raycast);
 		_raycast.Enabled = true;

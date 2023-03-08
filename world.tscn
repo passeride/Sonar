@@ -16,6 +16,7 @@ script = ExtResource("1_l2bnu")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(-1.78654e-08, -0.680286, 0.732947, -3.98938e-08, 0.732947, 0.680286, -1, -1.70865e-08, -4.02336e-08, 43.1839, 29.9707, -4.23535e-07)
+cull_mask = 1048573
 current = true
 
 [node name="MainUI" parent="Camera3D" instance=ExtResource("3_330ga")]
