@@ -15,7 +15,6 @@ public partial class NavRegionScript : NavigationRegion3D
 
 	public void _on_timer_timeout(){
 
-		GD.Print("Baking nav mesh");
 		BakeNavigationMesh();
 	}
 }

@@ -32,11 +32,9 @@ public partial class SmokeDetetctor : Node3D
 			GetNode<world>("/root/World").FireDetected();
 			ActivateAlarm();
 		}
-		GD.Print("Entered area", area.IsInGroup("Fire"));
 	}
 	private void _on_area_3d_body_entered(Node3D body)
 	{
-		GD.Print("Entered ", body.IsInGroup("Fire"));
 		// Replace with function body.
 	}
 
