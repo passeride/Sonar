@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://sbkyob63dt3f"]
+[gd_scene load_steps=8 format=3 uid="uid://sbkyob63dt3f"]
 
 [ext_resource type="Script" path="res://UI/MainUI.cs" id="1_wiage"]
 [ext_resource type="Theme" uid="uid://c1463wak03srw" path="res://Resources/UITheme.tres" id="2_vtvwu"]
+[ext_resource type="Texture2D" uid="uid://c4brblsn6yqg2" path="res://Icons/fire.svg" id="3_3q67c"]
+[ext_resource type="Texture2D" uid="uid://cxk2ff2yi37m4" path="res://Icons/users.svg" id="4_1nv16"]
+[ext_resource type="Texture2D" uid="uid://cdyamjnqofms2" path="res://Icons/gear.svg" id="4_td8j0"]
+[ext_resource type="Texture2D" uid="uid://cl2rn0qgcdiib" path="res://Icons/backward-fast.svg" id="5_ahj2s"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1l55u"]
 font_size = 26
@@ -77,8 +81,8 @@ anchor_top = 0.736
 anchor_right = 0.11
 anchor_bottom = 1.0
 offset_left = 20.0
-offset_top = 0.0719604
-offset_right = 0.279991
+offset_top = -19.928
+offset_right = 85.28
 offset_bottom = -20.0
 grow_vertical = 0
 alignment = 1
@@ -87,23 +91,43 @@ alignment = 1
 layout_mode = 2
 button_pressed = true
 text = "Show Fire"
+icon = ExtResource("3_3q67c")
+alignment = 2
+icon_alignment = 2
+expand_icon = true
 
 [node name="ShowPeople" type="CheckBox" parent="Buttons"]
 layout_mode = 2
 button_pressed = true
 text = "Show People"
+icon = ExtResource("4_1nv16")
+alignment = 2
+icon_alignment = 2
+expand_icon = true
 
 [node name="StartBtn" type="Button" parent="Buttons"]
 layout_mode = 2
 text = "Start Sim"
+icon = ExtResource("3_3q67c")
+alignment = 2
+icon_alignment = 2
+expand_icon = true
 
 [node name="Settings" type="Button" parent="Buttons"]
 layout_mode = 2
 text = "Show Settings"
+icon = ExtResource("4_td8j0")
+alignment = 2
+icon_alignment = 2
+expand_icon = true
 
 [node name="ResetBtn" type="Button" parent="Buttons"]
 layout_mode = 2
 text = "Reset Sim"
+icon = ExtResource("5_ahj2s")
+alignment = 2
+icon_alignment = 2
+expand_icon = true
 
 [connection signal="value_changed" from="Settings/Settings/SmokeDetector Slider" to="." method="_on_smoke_detector_slider_value_changed"]
 [connection signal="value_changed" from="Settings/Settings/Fire growth slider" to="." method="_on_fire_growth_slider_value_changed"]
