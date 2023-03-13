@@ -37,6 +37,7 @@ reset_sim={
 3d_render/layer_1="Base"
 3d_render/layer_2="Fire"
 3d_render/layer_3="Human"
+3d_render/layer_4="TempRefuge"
 
 [rendering]
 

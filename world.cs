@@ -18,13 +18,17 @@ public partial class world : Node3D
         MOVE_AGENTS
     }
 
+    private EvacPlan _evac_plan = EvacPlan.Instance;
+
     private ClickState _click_state = ClickState.NORMAL;
+    private MainUI _main_ui;
 
     // [Signal]
     // public delegate void PointClickPositionEventHandler(Vector3 pos);
 
     public override void _Ready()
     {
+        _main_ui = GetNode<MainUI>("Camera3D/MainUI");
         _camera = GetNode<Camera3D>("Camera3D");
         _raycast.Name = "MouseRaycast";
         _camera.AddChild(_raycast);
@@ -44,6 +48,12 @@ public partial class world : Node3D
     {
         // GetTree().CallGroup("Agents", "MoveTo", hit_point);
         GetTree().CallGroup("TV", "setShowsEscapeRoute", true);
+        IncrementPlan();
+    }
+
+    public void IncrementPlan(){
+        _evac_plan.CurrentEvacStep ++;
+        _main_ui.UpdateEvacSteps(_evac_plan.CurrentEvacStep);
     }
 
     public override void _Input(InputEvent @event)

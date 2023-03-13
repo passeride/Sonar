@@ -16,9 +16,9 @@ height = 50.0
 script = ExtResource("1_l2bnu")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(-3.64642e-08, -0.834204, 0.551457, 2.41049e-08, 0.551457, 0.834204, -1, 4.37114e-08, 1.77636e-15, 68.9427, 100.353, -10.1139)
+transform = Transform3D(3.90338e-08, -0.834204, 0.551457, 2.41049e-08, 0.551457, 0.834204, -1, -1.92693e-08, 4.16338e-08, 68.9427, 100.353, -10.1139)
 current = true
-fov = 38.8801
+fov = 37.8493
 
 [node name="MainUI" parent="Camera3D" instance=ExtResource("3_330ga")]
 
@@ -31,6 +31,16 @@ environment = ExtResource("2_xodet")
 [node name="Sun" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, 0.871496, 0.490402, 0, -0.490402, 0.871496, 0, 0, 0)
 shadow_enabled = true
+shadow_bias = 0.099
+shadow_blur = 0.763
+directional_shadow_max_distance = 211.0
+
+[node name="LightmapProbe" type="LightmapProbe" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.15146, 0)
+
+[node name="ReflectionProbe" type="ReflectionProbe" parent="WorldEnvironment/LightmapProbe"]
+size = Vector3(81, 20, 122)
+enable_shadows = true
 
 [node name="Agents" type="Node3D" parent="."]
 

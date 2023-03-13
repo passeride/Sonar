@@ -18,7 +18,7 @@ public partial class TV : Node3D
     private StandardMaterial3D _inactive_screen_material;
     private OmniLight3D _light;
 
-	private Vector3? _evac_point = null;
+    private Vector3? _evac_point = null;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -48,25 +48,30 @@ public partial class TV : Node3D
             );
         _light.Visible = _shows_escape_route;
 
-        var evacs = GetTree().GetNodesInGroup("Evac");
-		var best_evac_point = Vector3.Zero;
-		var best_evac_point_distance = float.MaxValue;
-        foreach (Node3D evac in evacs)
+        var evacStep = EvacPlan.Instance.EvacSteps[EvacPlan.Instance.CurrentEvacStep];
+        if (evacStep.StepType == EvacStepActionType.GOTO)
         {
-            _agent.TargetPosition = evac.GlobalPosition;
-			var distance = _agent.DistanceToTarget();
-			GD.Print("Distance is ", distance);
-			if(distance < best_evac_point_distance){
-				best_evac_point = evac.GlobalPosition;
-				best_evac_point_distance = distance;
-			}
-        }
+            var goto_step = evacStep as EvacStepGoTo;
+            var evacs = GetTree().GetNodesInGroup(goto_step.GroupName);
+            var best_evac_point = Vector3.Zero;
+            var best_evac_point_distance = float.MaxValue;
+            foreach (Node3D evac in evacs)
+            {
+                _agent.TargetPosition = evac.GlobalPosition;
+                var distance = _agent.DistanceToTarget();
+                GD.Print("Distance is ", distance);
+                if (distance < best_evac_point_distance)
+                {
+                    best_evac_point = evac.GlobalPosition;
+                    best_evac_point_distance = distance;
+                }
+            }
 
-
-		if(best_evac_point_distance < float.MaxValue)
-        {
-			GD.Print("Best point is ", best_evac_point);
-            _evac_point = best_evac_point;
+            if (best_evac_point_distance < float.MaxValue)
+            {
+                GD.Print("Best point is ", best_evac_point);
+                _evac_point = best_evac_point;
+            }
         }
     }
 

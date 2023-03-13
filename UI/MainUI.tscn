@@ -1,15 +1,28 @@
-[gd_scene load_steps=9 format=3 uid="uid://sbkyob63dt3f"]
+[gd_scene load_steps=16 format=3 uid="uid://sbkyob63dt3f"]
 
 [ext_resource type="Script" path="res://UI/MainUI.cs" id="1_wiage"]
 [ext_resource type="Theme" uid="uid://c1463wak03srw" path="res://Resources/UITheme.tres" id="2_vtvwu"]
 [ext_resource type="Texture2D" uid="uid://c4brblsn6yqg2" path="res://Icons/fire.svg" id="3_3q67c"]
 [ext_resource type="Texture2D" uid="uid://cxk2ff2yi37m4" path="res://Icons/users.svg" id="4_1nv16"]
+[ext_resource type="Texture2D" uid="uid://c0h5n00rrou7l" path="res://Icons/users-rectangle.svg" id="4_6tpse"]
 [ext_resource type="Texture2D" uid="uid://cdyamjnqofms2" path="res://Icons/gear.svg" id="4_td8j0"]
 [ext_resource type="Texture2D" uid="uid://cl2rn0qgcdiib" path="res://Icons/backward-fast.svg" id="5_ahj2s"]
 [ext_resource type="Texture2D" uid="uid://cdn35mlixekl1" path="res://Icons/hourglass-start.svg" id="7_pxawn"]
+[ext_resource type="Texture2D" uid="uid://dosgyon8pnhs2" path="res://Icons/toolbox.svg" id="8_4kh8f"]
+[ext_resource type="Texture2D" uid="uid://chc5s5w8wdqja" path="res://Icons/circle-play.svg" id="9_aci4g"]
+[ext_resource type="Texture2D" uid="uid://c37uwt61yiyi1" path="res://Icons/helicopter.svg" id="9_mdj1f"]
+[ext_resource type="Texture2D" uid="uid://kkiupybbbioc" path="res://Icons/sailboat.svg" id="10_v3eah"]
+[ext_resource type="Texture2D" uid="uid://bdu4fxktlsvt2" path="res://Icons/person-falling.svg" id="11_cq71i"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1l55u"]
 font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_euma3"]
+font_size = 26
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 12
+shadow_color = Color(0, 0, 0, 1)
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
@@ -97,6 +110,16 @@ alignment = 2
 icon_alignment = 2
 expand_icon = true
 
+[node name="ShowRefuge" type="CheckBox" parent="Buttons"]
+layout_mode = 2
+button_pressed = true
+text = "Show TR
+"
+icon = ExtResource("4_6tpse")
+alignment = 2
+icon_alignment = 2
+expand_icon = true
+
 [node name="ShowPeople" type="CheckBox" parent="Buttons"]
 layout_mode = 2
 button_pressed = true
@@ -139,9 +162,45 @@ offset_bottom = 50.0
 texture = ExtResource("7_pxawn")
 expand_mode = 1
 
+[node name="EvacPlan" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -119.0
+offset_right = 179.0
+offset_bottom = 120.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="EvacPlan"]
+layout_mode = 2
+text = "Evac Plan:"
+label_settings = SubResource("LabelSettings_euma3")
+
+[node name="ItemList" type="ItemList" parent="EvacPlan"]
+layout_mode = 2
+auto_height = true
+item_count = 5
+fixed_icon_size = Vector2i(16, 16)
+item_0/text = "Idle"
+item_0/icon = ExtResource("9_aci4g")
+item_1/text = "Go to Locate Room"
+item_1/icon = ExtResource("8_4kh8f")
+item_1/selectable = false
+item_2/text = "Go to helypad"
+item_2/icon = ExtResource("9_mdj1f")
+item_2/selectable = false
+item_3/text = "Use boats"
+item_3/icon = ExtResource("10_v3eah")
+item_3/selectable = false
+item_4/text = "JUMP!"
+item_4/icon = ExtResource("11_cq71i")
+item_4/selectable = false
+
 [connection signal="value_changed" from="Settings/Settings/SmokeDetector Slider" to="." method="_on_smoke_detector_slider_value_changed"]
 [connection signal="value_changed" from="Settings/Settings/Fire growth slider" to="." method="_on_fire_growth_slider_value_changed"]
 [connection signal="toggled" from="Buttons/ShowFire" to="." method="_on_show_fire_toggled"]
+[connection signal="toggled" from="Buttons/ShowRefuge" to="." method="_on_show_refuge_toggled"]
 [connection signal="toggled" from="Buttons/ShowPeople" to="." method="_on_show_people_toggled"]
 [connection signal="pressed" from="Buttons/StartBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="Buttons/Settings" to="." method="_on_settings_pressed"]

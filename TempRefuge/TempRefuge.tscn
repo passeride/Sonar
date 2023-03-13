@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://c8b8qyrtujisf"]
+
+[ext_resource type="Script" path="res://TempRefuge/TempRefuge.cs" id="1_x1blr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yggnk"]
+size = Vector3(9, 4, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_haf60"]
+transparency = 1
+albedo_color = Color(0.733333, 0.780392, 0.470588, 0.454902)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5qd51"]
+material = SubResource("StandardMaterial3D_haf60")
+
+[node name="TempRefuge" type="Area3D" groups=["TempRefuge"]]
+script = ExtResource("1_x1blr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_yggnk")
+
+[node name="RefugeVis" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("BoxMesh_5qd51")

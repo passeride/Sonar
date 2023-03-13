@@ -5,6 +5,7 @@ public partial class MainUI : Control
 {
     PanelContainer _settings_panel;
     RichTextLabel _time_label;
+    ItemList _evac_plan;
     double _timestamp_start_drill = 0.0;
     bool _drill_running = false;
 
@@ -13,6 +14,7 @@ public partial class MainUI : Control
     {
         _settings_panel = GetNode<PanelContainer>("Settings");
         _time_label = GetNode<RichTextLabel>("TimerLabel");
+        _evac_plan = GetNode<ItemList>("EvacPlan/ItemList");
     }
 
     public void _on_show_fire_toggled(bool button_pressed)
@@ -23,6 +25,11 @@ public partial class MainUI : Control
     public void _on_show_people_toggled(bool button_pressed)
     {
         GetViewport().GetCamera3D().SetCullMaskValue(3, button_pressed);
+    }
+
+    public void _on_show_refuge_toggled(bool button_pressed)
+    {
+        GetViewport().GetCamera3D().SetCullMaskValue(4, button_pressed);
     }
 
     public void _on_settings_pressed()
@@ -40,6 +47,20 @@ public partial class MainUI : Control
         GetTree().CallGroup("Fire", "StartFire");
         _drill_running = true;
         _timestamp_start_drill = Godot.Time.GetUnixTimeFromSystem();
+        UpdateEvacSteps(0);
+    }
+
+    public void UpdateEvacSteps(int currentStep ){
+        for( int i = 0; i < _evac_plan.ItemCount; i++){
+            if( i < currentStep ){
+                _evac_plan.SetItemDisabled(i, true);
+                _evac_plan.SetItemCustomBgColor(i, Colors.Black);
+            }else if( i == currentStep ){
+                _evac_plan.SetItemCustomBgColor(i, Colors.DarkGreen);
+            }else {
+
+            }
+        }
     }
 
     public void _on_fire_growth_slider_value_changed(float value)
@@ -52,13 +73,18 @@ public partial class MainUI : Control
     {
         if (_drill_running)
             _time_label.Text =
-                "Timer: " + (Godot.Time.GetUnixTimeFromSystem() - _timestamp_start_drill).ToString("0:0.00##");
+                "Timer: "
+                + (Godot.Time.GetUnixTimeFromSystem() - _timestamp_start_drill).ToString(
+                    "0:0.00##"
+                );
 
-		if (Input.IsActionJustPressed("start_sim")){
-			_on_start_btn_pressed();
-		}
-		if (Input.IsActionJustPressed("reset_sim")){
-			// _on_reset
-			}
+        if (Input.IsActionJustPressed("start_sim"))
+        {
+            _on_start_btn_pressed();
+        }
+        if (Input.IsActionJustPressed("reset_sim"))
+        {
+            // _on_reset
+        }
     }
 }
