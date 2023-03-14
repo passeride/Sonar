@@ -53,6 +53,10 @@ public partial class MainUI : Control
         GetNode<world>("/root/World").SetClickState(world.ClickState.MOVE_AGENTS);
     }
 
+    public void _on_show_paths_toggled(bool button_pressed){
+        GetTree().CallGroup("Agents", "ShowPaths", button_pressed);
+    }
+
     public void _on_smoke_detector_slider_value_changed(float value)
     {
         GetTree().CallGroup("SmokeDetector", "SetSmokedetectorRange", value);
@@ -66,8 +70,11 @@ public partial class MainUI : Control
         UpdateEvacSteps(0);
     }
 
-    public void _on_reset_btn_toggled(bool button_pressed){
-        // RESET
+    public void _on_reset_btn_pressed()
+    {
+        GetTree().CallGroup("Fire", "Reset");
+        GetTree().CallGroup("Agents", "Reset");
+        _drill_running = false;
     }
 
     public void UpdateEvacSteps(int currentStep)

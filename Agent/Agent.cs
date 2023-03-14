@@ -10,12 +10,19 @@ public partial class Agent : CharacterBody3D
     public delegate void GoToPositionEventHandler(Vector3 pos);
 
     RayCast3D _see_raycast;
+    private Vector3 _initial_position;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
         _agent = GetNode<NavigationAgent3D>("NavigationAgent3D");
         _see_raycast = GetNode<RayCast3D>("SeeCast");
+        _initial_position = GlobalPosition;
+    }
+
+    private void Reset(){
+        GlobalPosition = _initial_position;
+        _agent.TargetPosition = _initial_position;
     }
 
     private void _on_area_3d_area_entered(Area3D area)
@@ -24,6 +31,10 @@ public partial class Agent : CharacterBody3D
         {
             QueueFree();
         }
+    }
+
+    public void ShowPaths(bool showPaths){
+        _agent.DebugEnabled = showPaths;
     }
 
     public void MoveTo(Vector3 pos)
@@ -74,13 +85,13 @@ public partial class Agent : CharacterBody3D
         Vector3 currentPos = GlobalPosition;
         Vector3 nextPos = _agent.GetNextPathPosition();
         Vector3 velocity = (nextPos - currentPos).Normalized() * _agent.MaxSpeed;
-        Vector3 lookAtPos = nextPos;
-        lookAtPos.Y = 2.0f;
-        GlobalRotation = lookAtPos;
-        LookAt(lookAtPos, Vector3.Up);
-        var test = RotationDegrees;
-        test.X = 0.0f;
-        RotationDegrees = test;
+        // Vector3 lookAtPos = nextPos;
+        // lookAtPos.Y = 2.0f;
+        // GlobalRotation = lookAtPos;
+        // LookAt(lookAtPos, Vector3.Up);
+        // var test = RotationDegrees;
+        // test.X = 0.0f;
+        // RotationDegrees = test;
         // MoveAndSlide(velocity);
         Velocity = velocity * (float)delta;
         MoveAndSlide();

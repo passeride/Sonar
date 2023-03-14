@@ -7,8 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://c0h5n00rrou7l" path="res://Icons/users-rectangle.svg" id="4_6tpse"]
 [ext_resource type="Texture2D" uid="uid://cdyamjnqofms2" path="res://Icons/gear.svg" id="4_td8j0"]
 [ext_resource type="Texture2D" uid="uid://cl2rn0qgcdiib" path="res://Icons/backward-fast.svg" id="5_ahj2s"]
+[ext_resource type="Texture2D" uid="uid://gxfoxhledd8f" path="res://Icons/route.svg" id="6_otois"]
 [ext_resource type="Texture2D" uid="uid://cdn35mlixekl1" path="res://Icons/hourglass-start.svg" id="7_pxawn"]
-[ext_resource type="Texture2D" uid="uid://i74tv23dq5ls" path="res://Icons/users-slash.svg" id="7_s7f52"]
 [ext_resource type="Texture2D" uid="uid://chaoadllredxp" path="res://Icons/helicopter_white.svg" id="7_ve5bo"]
 [ext_resource type="Texture2D" uid="uid://xl58mmv80auj" path="res://Icons/fire_white.svg" id="8_3hsmt"]
 [ext_resource type="Texture2D" uid="uid://dosgyon8pnhs2" path="res://Icons/toolbox.svg" id="8_4kh8f"]
@@ -68,7 +68,6 @@ offset_bottom = 264.0
 text = "Timer: 0.0"
 
 [node name="Settings" type="PanelContainer" parent="."]
-visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -147,6 +146,14 @@ alignment = 2
 icon_alignment = 2
 expand_icon = true
 
+[node name="ShowPaths" type="CheckBox" parent="Settings/Settings"]
+layout_mode = 2
+text = "Show paths"
+icon = ExtResource("6_otois")
+alignment = 2
+icon_alignment = 2
+expand_icon = true
+
 [node name="Label" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 3
@@ -200,7 +207,7 @@ stretch_mode = 0
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("9_fxld0")
-texture_normal = ExtResource("7_s7f52")
+texture_normal = ExtResource("4_1nv16")
 texture_pressed = ExtResource("10_tokvk")
 stretch_mode = 0
 
@@ -295,8 +302,10 @@ item_5/selectable = false
 [connection signal="toggled" from="Settings/Settings/ShowFire" to="." method="_on_show_fire_toggled"]
 [connection signal="toggled" from="Settings/Settings/ShowRefuge" to="." method="_on_show_refuge_toggled"]
 [connection signal="toggled" from="Settings/Settings/ShowPeople" to="." method="_on_show_people_toggled"]
+[connection signal="toggled" from="Settings/Settings/ShowPaths" to="." method="_on_show_paths_toggled"]
 [connection signal="toggled" from="VBoxContainer/HeliEdit" to="." method="_on_heli_edit_toggled"]
 [connection signal="toggled" from="VBoxContainer/FireEdit" to="." method="_on_fire_edit_toggled"]
 [connection signal="toggled" from="VBoxContainer/AgentEdit" to="." method="_on_agent_edit_toggled"]
 [connection signal="pressed" from="Buttons/StartBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="Buttons/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Buttons/ResetBtn" to="." method="_on_reset_btn_pressed"]

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://sqsjka5poklf"
-path="res://.godot/imported/Huldra.blend-1d896b11683d051654e820ce65e47454.scn"
+uid="uid://c7d1qiji04e2h"
+path="res://.godot/imported/Huldra_weather.blend-d09babc5b88f78de468642e211220433.scn"
 
 [deps]
 
-source_file="res://Scenarios/Huldra/Huldra.blend"
-dest_files=["res://.godot/imported/Huldra.blend-1d896b11683d051654e820ce65e47454.scn"]
+source_file="res://Scenarios/Huldra/Huldra_weather.blend"
+dest_files=["res://.godot/imported/Huldra_weather.blend-d09babc5b88f78de468642e211220433.scn"]
 
 [params]
 
@@ -30,15 +30,6 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "nodes": {
-"PATH:Floor": {
-"generate/navmesh": 1,
-"generate/physics": true,
-"physics/shape_type": 2
-},
-"PATH:Walls Center": {
-"generate/physics": true,
-"physics/shape_type": 2
-},
 "PATH:Weather_EscapeRoute": {
 "generate/physics": true,
 "physics/shape_type": 2

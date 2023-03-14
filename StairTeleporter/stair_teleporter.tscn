@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dygwktlaugxow"]
+
+[ext_resource type="Script" path="res://StairTeleporter/StairTeleporter.cs" id="1_kk8sr"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vtk6t"]
+radius = 7.84711
+
+[node name="StairTeleporter" type="NavigationLink3D"]
+start_position = Vector3(0.77356, 0.5979, -1.88379)
+end_position = Vector3(-1.00098, -0.565613, 2.24194)
+script = ExtResource("1_kk8sr")
+
+[node name="Enter" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.79926)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Enter"]
+shape = SubResource("SphereShape3D_vtk6t")
+
+[node name="Exit" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.65155)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit"]
+shape = SubResource("SphereShape3D_vtk6t")
+
+[connection signal="body_entered" from="Enter" to="." method="_on_enter_body_entered_enter_node"]
+[connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered_exit"]

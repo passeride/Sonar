@@ -16,9 +16,10 @@ height = 50.0
 [node name="World" type="Node3D"]
 script = ExtResource("1_l2bnu")
 FireScene = ExtResource("2_iq125")
+AgentScene = ExtResource("3_4pkjk")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(3.90338e-08, -0.834204, 0.551457, 2.41049e-08, 0.551457, 0.834204, -1, -1.92693e-08, 4.16338e-08, 68.9427, 100.353, -10.1139)
+transform = Transform3D(3.90338e-08, -0.834204, 0.551457, 2.41049e-08, 0.551457, 0.834204, -1, -1.92693e-08, 4.16338e-08, 56.4032, 131.346, -10.1139)
 current = true
 fov = 37.8493
 

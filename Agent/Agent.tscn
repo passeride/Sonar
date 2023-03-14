@@ -11,6 +11,8 @@ radius = 1.19872
 
 [node name="Agent" type="CharacterBody3D" groups=["Agents"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+floor_max_angle = 2.62323
+floor_snap_length = 0.7
 script = ExtResource("1_aep6d")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
@@ -22,7 +24,9 @@ shape = SubResource("CapsuleShape3D_bqhv1")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 max_speed = 241.3
-debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0, 0, 0, 1)
+debug_path_custom_point_size = 7.0
 
 [node name="RayCast3D" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)

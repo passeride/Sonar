@@ -5,9 +5,11 @@ public partial class world : Node3D
 {
     [Export]
     public PackedScene FireScene;
+
+    [Export]
+    public PackedScene AgentScene;
     private Camera3D _camera;
     private RayCast3D _raycast = new RayCast3D();
-    private Agent _agent;
 
     public enum ClickState
     {
@@ -71,20 +73,22 @@ public partial class world : Node3D
                 query.From = origin;
                 query.To = end;
                 var intersection = state.IntersectRay(query);
-                var fires = GetTree().GetNodesInGroup("Fire");
 
                 if (intersection.Count > 0)
                 {
-                    Node collision = ((Node) intersection["collider"]);
+                    Node collision = ((Node)intersection["collider"]);
                     var fire_coll = collision.GetParentOrNull<fire>();
                     GD.Print(fire_coll);
-                    if(fire_coll != null){
+                    if (fire_coll != null)
+                    {
                         fire_coll.QueueFree();
-                    }else{
-                    Vector3 hit_point = ((Vector3)intersection["position"]);
-                    fire fire = (fire)FireScene.Instantiate();
-                    fire.GlobalPosition = hit_point;
-                    AddChild(fire);
+                    }
+                    else
+                    {
+                        Vector3 hit_point = ((Vector3)intersection["position"]);
+                        fire fire = (fire)FireScene.Instantiate();
+                        fire.GlobalPosition = hit_point;
+                        AddChild(fire);
                     }
                 }
             }
@@ -104,10 +108,27 @@ public partial class world : Node3D
 
                 if (intersection.Count > 0)
                 {
-                    Vector3 hit_point = ((Vector3)intersection["position"]);
-                    GetTree().CallGroup("Agents", "MoveTo", hit_point);
-                    // GetTree().CallGroup("TV", "setShowsEscapeRoute", true);
-                    // _agent.MoveTo(hit_point);
+                    if (eventMouseButton.ButtonIndex == MouseButton.Left)
+                    {
+                        Node collision = ((Node)intersection["collider"]);
+                        if (collision is Agent)
+                        {
+                            collision.QueueFree();
+                        }
+                        else
+                        {
+                            Vector3 hit_point = ((Vector3)intersection["position"]);
+                            Agent agent = (Agent)AgentScene.Instantiate();
+                            agent.GlobalPosition = hit_point;
+                            AddChild(agent);
+                        }
+                    }
+                    else if (eventMouseButton.ButtonIndex == MouseButton.Right)
+                    {
+                        Vector3 hit_point = ((Vector3)intersection["position"]);
+                        GetTree().CallGroup("Agents", "MoveTo", hit_point);
+                        GetTree().CallGroup("TV", "setShowsEscapeRoute", true);
+                    }
                 }
             }
         }
