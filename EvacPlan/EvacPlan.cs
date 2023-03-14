@@ -39,7 +39,7 @@ public class EvacPlan
 
     public void IncrementStep()
     {
-        if (CurrentEvacStep + 1 <= EvacSteps.Count)
+        if (CurrentEvacStep + 1 < EvacSteps.Count)
             CurrentEvacStep += 1;
     }
 
