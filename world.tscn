@@ -19,9 +19,9 @@ FireScene = ExtResource("2_iq125")
 AgentScene = ExtResource("3_4pkjk")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(3.90338e-08, -0.834204, 0.551457, 2.41049e-08, 0.551457, 0.834204, -1, -1.92693e-08, 4.16338e-08, 56.4032, 131.346, -10.1139)
+transform = Transform3D(2.60344e-08, -0.985589, 0.16916, 3.77742e-08, 0.16916, 0.985589, -1, -1.92693e-08, 4.16339e-08, -14.0874, 131.346, -10.1139)
 current = true
-fov = 37.8493
+fov = 57.2
 
 [node name="MainUI" parent="Camera3D" instance=ExtResource("3_330ga")]
 

@@ -31,19 +31,14 @@ import_script/path=""
 _subresources={
 "nodes": {
 "PATH:Floor": {
-"generate/navmesh": 1,
+"generate/physics": true,
+"physics/shape_type": 2
+},
+"PATH:LivingQuearterWalls": {
 "generate/physics": true,
 "physics/shape_type": 2
 },
 "PATH:Walls Center": {
-"generate/physics": true,
-"physics/shape_type": 2
-},
-"PATH:Weather_EscapeRoute": {
-"generate/physics": true,
-"physics/shape_type": 2
-},
-"PATH:Weather_floor": {
 "generate/physics": true,
 "physics/shape_type": 2
 }

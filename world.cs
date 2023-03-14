@@ -126,8 +126,8 @@ public partial class world : Node3D
                     else if (eventMouseButton.ButtonIndex == MouseButton.Right)
                     {
                         Vector3 hit_point = ((Vector3)intersection["position"]);
+                        GD.Print(intersection);
                         GetTree().CallGroup("Agents", "MoveTo", hit_point);
-                        GetTree().CallGroup("TV", "setShowsEscapeRoute", true);
                     }
                 }
             }
