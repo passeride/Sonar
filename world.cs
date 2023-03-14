@@ -25,9 +25,6 @@ public partial class world : Node3D
     private ClickState _click_state = ClickState.NORMAL;
     private MainUI _main_ui;
 
-    // [Signal]
-    // public delegate void PointClickPositionEventHandler(Vector3 pos);
-
     public override void _Ready()
     {
         _main_ui = GetNode<MainUI>("Camera3D/MainUI");
@@ -99,7 +96,7 @@ public partial class world : Node3D
             {
                 Vector3 origin = _camera.ProjectRayOrigin(eventMouseButton.Position);
                 Vector3 direction = _camera.ProjectRayNormal(eventMouseButton.Position);
-                Vector3 end = origin + direction * 1000;
+                Vector3 end = origin + direction * 3000;
                 PhysicsDirectSpaceState3D state = GetWorld3D().DirectSpaceState;
                 var query = new PhysicsRayQueryParameters3D();
                 query.From = origin;
@@ -119,6 +116,7 @@ public partial class world : Node3D
                         {
                             Vector3 hit_point = ((Vector3)intersection["position"]);
                             Agent agent = (Agent)AgentScene.Instantiate();
+                            hit_point.Y += 2.0f;
                             agent.GlobalPosition = hit_point;
                             AddChild(agent);
                         }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://sbkyob63dt3f"]
+[gd_scene load_steps=31 format=3 uid="uid://sbkyob63dt3f"]
 
 [ext_resource type="Script" path="res://UI/MainUI.cs" id="1_wiage"]
 [ext_resource type="Theme" uid="uid://c1463wak03srw" path="res://Resources/UITheme.tres" id="2_vtvwu"]
@@ -25,6 +25,22 @@ font_size = 26
 
 [sub_resource type="LabelSettings" id="LabelSettings_myw6o"]
 font_size = 24
+
+[sub_resource type="InputEventKey" id="InputEventKey_11lei"]
+device = -1
+keycode = 70
+unicode = 102
+
+[sub_resource type="Shortcut" id="Shortcut_bhkuy"]
+events = [SubResource("InputEventKey_11lei")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_jtmhe"]
+device = -1
+keycode = 65
+unicode = 97
+
+[sub_resource type="Shortcut" id="Shortcut_bwqkq"]
+events = [SubResource("InputEventKey_jtmhe")]
 
 [sub_resource type="InputEventKey" id="InputEventKey_744qh"]
 device = -1
@@ -68,6 +84,7 @@ offset_bottom = 264.0
 text = "Timer: 0.0"
 
 [node name="Settings" type="PanelContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -199,6 +216,7 @@ stretch_mode = 0
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("9_fxld0")
+shortcut = SubResource("Shortcut_bhkuy")
 texture_normal = ExtResource("3_3q67c")
 texture_pressed = ExtResource("8_3hsmt")
 stretch_mode = 0
@@ -207,6 +225,7 @@ stretch_mode = 0
 layout_mode = 2
 toggle_mode = true
 button_group = ExtResource("9_fxld0")
+shortcut = SubResource("Shortcut_bwqkq")
 texture_normal = ExtResource("4_1nv16")
 texture_pressed = ExtResource("10_tokvk")
 stretch_mode = 0

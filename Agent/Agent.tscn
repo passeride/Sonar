@@ -23,7 +23,7 @@ mesh = SubResource("CapsuleMesh_xfen0")
 shape = SubResource("CapsuleShape3D_bqhv1")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-max_speed = 241.3
+max_speed = 246.41
 debug_use_custom = true
 debug_path_custom_color = Color(0, 0, 0, 1)
 debug_path_custom_point_size = 7.0

@@ -3,18 +3,23 @@ using System;
 
 public partial class NavRegionScript : NavigationRegion3D
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-	}
+    private MainUI _mainUi;
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+        BakeNavigationMesh();
+        _mainUi = GetNode<MainUI>("/root/World/Camera3D/MainUI");
+    }
 
-	public void _on_timer_timeout(){
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta) { }
 
-		BakeNavigationMesh();
-	}
+    public void _on_timer_timeout()
+    {
+        if (_mainUi.isDrillRunning)
+        {
+            BakeNavigationMesh();
+        }
+    }
 }

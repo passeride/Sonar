@@ -8,6 +8,10 @@ public partial class MainUI : Control
     ItemList _evac_plan;
     double _timestamp_start_drill = 0.0;
     bool _drill_running = false;
+    public bool isDrillRunning
+    {
+        get => _drill_running;
+    }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -53,7 +57,8 @@ public partial class MainUI : Control
         GetNode<world>("/root/World").SetClickState(world.ClickState.MOVE_AGENTS);
     }
 
-    public void _on_show_paths_toggled(bool button_pressed){
+    public void _on_show_paths_toggled(bool button_pressed)
+    {
         GetTree().CallGroup("Agents", "ShowPaths", button_pressed);
     }
 

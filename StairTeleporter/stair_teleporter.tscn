@@ -23,4 +23,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.65155)
 shape = SubResource("SphereShape3D_vtk6t")
 
 [connection signal="body_entered" from="Enter" to="." method="_on_enter_body_entered_enter_node"]
+[connection signal="body_exited" from="Enter" to="." method="_on_enter_body_exited_enter_node"]
 [connection signal="body_entered" from="Exit" to="." method="_on_exit_body_entered_exit"]
+[connection signal="body_exited" from="Exit" to="." method="_on_exit_body_exited_exit_node"]
