@@ -42,9 +42,11 @@ public partial class Agent : CharacterBody3D
 
     public void CheckSurroundings()
     {
+        GetNode<SpotLight3D>("SpotLight3D").Visible = true;
         var TVs = GetTree().GetNodesInGroup("TV").ToList();
 
         var ordered_tvs = TVs.OrderBy(node => (node as Node3D).GlobalPosition.DistanceTo(GlobalPosition));
+        var found_way = false;
 
         foreach (Node3D tv in ordered_tvs)
         {
@@ -61,10 +63,15 @@ public partial class Agent : CharacterBody3D
                 if (evac_point != null)
                 {
                     MoveTo((Vector3)evac_point);
-                    break;
+                    found_way = true;
+                    return;
                 }
             }
         }
+
+        var TR = GetTree().GetNodesInGroup("TempRefuge").ToList().FirstOrDefault() as Node3D;
+        MoveTo(TR.GlobalPosition);
+
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -80,10 +87,10 @@ public partial class Agent : CharacterBody3D
         var currentPos = GlobalPosition;
         var nextPos = _agent.GetNextPathPosition();
         var velocity = (nextPos - currentPos).Normalized() * _agent.MaxSpeed;
-        // Vector3 lookAtPos = nextPos;
-        // lookAtPos.Y = 2.0f;
-        // GlobalRotation = lookAtPos;
-        // LookAt(lookAtPos, Vector3.Up);
+        Vector3 lookAtPos = nextPos;
+        lookAtPos.Y = 2.0f;
+        GlobalRotation = lookAtPos;
+        LookAt(lookAtPos, Vector3.Up);
         // var test = RotationDegrees;
         // test.X = 0.0f;
         // RotationDegrees = test;

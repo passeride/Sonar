@@ -39,9 +39,15 @@ _subresources={
 "generate/physics": true,
 "physics/shape_type": 2
 },
+"PATH:MezzDeck Reference": {
+"import/skip_import": true
+},
 "PATH:Walls Center": {
 "generate/physics": true,
 "physics/shape_type": 2
+},
+"PATH:WeatherDeck Reference": {
+"import/skip_import": true
 }
 }
 }
