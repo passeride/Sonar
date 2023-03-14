@@ -49,6 +49,7 @@ public partial class TV : Node3D
         _light.Visible = _shows_escape_route;
 
         var evacStep = EvacPlan.Instance.EvacSteps[EvacPlan.Instance.CurrentEvacStep];
+        GD.Print("STEPTYPE FROM TV:", evacStep.StepType);
         if (evacStep.StepType == EvacStepActionType.GOTO)
         {
             var goto_step = evacStep as EvacStepGoTo;

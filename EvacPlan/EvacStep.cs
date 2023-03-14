@@ -8,5 +8,5 @@
 
     public abstract class EvacStep
     {
-        public EvacStepActionType StepType;
+        public abstract EvacStepActionType StepType { get; }
     }

@@ -43,7 +43,6 @@ public partial class Agent : CharacterBody3D
             _see_raycast.ForceRaycastUpdate();
 
             var coll = _see_raycast.GetCollider() as Node3D;
-            GD.Print(coll);
             if (coll == null)
                 continue;
 

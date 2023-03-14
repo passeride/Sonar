@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://sbkyob63dt3f"]
+[gd_scene load_steps=27 format=3 uid="uid://sbkyob63dt3f"]
 
 [ext_resource type="Script" path="res://UI/MainUI.cs" id="1_wiage"]
 [ext_resource type="Theme" uid="uid://c1463wak03srw" path="res://Resources/UITheme.tres" id="2_vtvwu"]
@@ -8,14 +8,39 @@
 [ext_resource type="Texture2D" uid="uid://cdyamjnqofms2" path="res://Icons/gear.svg" id="4_td8j0"]
 [ext_resource type="Texture2D" uid="uid://cl2rn0qgcdiib" path="res://Icons/backward-fast.svg" id="5_ahj2s"]
 [ext_resource type="Texture2D" uid="uid://cdn35mlixekl1" path="res://Icons/hourglass-start.svg" id="7_pxawn"]
+[ext_resource type="Texture2D" uid="uid://i74tv23dq5ls" path="res://Icons/users-slash.svg" id="7_s7f52"]
+[ext_resource type="Texture2D" uid="uid://chaoadllredxp" path="res://Icons/helicopter_white.svg" id="7_ve5bo"]
+[ext_resource type="Texture2D" uid="uid://xl58mmv80auj" path="res://Icons/fire_white.svg" id="8_3hsmt"]
 [ext_resource type="Texture2D" uid="uid://dosgyon8pnhs2" path="res://Icons/toolbox.svg" id="8_4kh8f"]
 [ext_resource type="Texture2D" uid="uid://chc5s5w8wdqja" path="res://Icons/circle-play.svg" id="9_aci4g"]
+[ext_resource type="ButtonGroup" uid="uid://8lpnwlgjex3u" path="res://UI/MainUI_edit_buttons.tres" id="9_fxld0"]
 [ext_resource type="Texture2D" uid="uid://c37uwt61yiyi1" path="res://Icons/helicopter.svg" id="9_mdj1f"]
+[ext_resource type="Texture2D" uid="uid://cea1um4koq1br" path="res://Icons/users_white.svg" id="10_tokvk"]
 [ext_resource type="Texture2D" uid="uid://kkiupybbbioc" path="res://Icons/sailboat.svg" id="10_v3eah"]
 [ext_resource type="Texture2D" uid="uid://bdu4fxktlsvt2" path="res://Icons/person-falling.svg" id="11_cq71i"]
+[ext_resource type="Texture2D" uid="uid://dgtesp818gajl" path="res://Icons/hourglass-half.svg" id="14_c07me"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_1l55u"]
 font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_myw6o"]
+font_size = 24
+
+[sub_resource type="InputEventKey" id="InputEventKey_744qh"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_eq40c"]
+events = [SubResource("InputEventKey_744qh")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_28m1o"]
+device = -1
+keycode = 82
+unicode = 114
+
+[sub_resource type="Shortcut" id="Shortcut_d7yj6"]
+events = [SubResource("InputEventKey_28m1o")]
 
 [sub_resource type="LabelSettings" id="LabelSettings_euma3"]
 font_size = 26
@@ -31,6 +56,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_vtvwu")
 script = ExtResource("1_wiage")
 
 [node name="TimerLabel" type="RichTextLabel" parent="."]
@@ -54,6 +80,7 @@ offset_top = -203.0
 offset_bottom = 203.0
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("2_vtvwu")
 
 [node name="Settings" type="VBoxContainer" parent="Settings"]
 layout_mode = 2
@@ -88,20 +115,11 @@ value = 1.0
 rounded = true
 tick_count = 5
 
-[node name="Buttons" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 0.736
-anchor_right = 0.11
-anchor_bottom = 1.0
-offset_left = 20.0
-offset_top = -19.928
-offset_right = 85.28
-offset_bottom = -20.0
-grow_vertical = 0
-alignment = 1
+[node name="Label2" type="Label" parent="Settings/Settings"]
+layout_mode = 2
+text = "Toggle visual elements"
 
-[node name="ShowFire" type="CheckBox" parent="Buttons"]
+[node name="ShowFire" type="CheckBox" parent="Settings/Settings"]
 layout_mode = 2
 button_pressed = true
 text = "Show Fire"
@@ -110,7 +128,7 @@ alignment = 2
 icon_alignment = 2
 expand_icon = true
 
-[node name="ShowRefuge" type="CheckBox" parent="Buttons"]
+[node name="ShowRefuge" type="CheckBox" parent="Settings/Settings"]
 layout_mode = 2
 button_pressed = true
 text = "Show TR
@@ -120,7 +138,7 @@ alignment = 2
 icon_alignment = 2
 expand_icon = true
 
-[node name="ShowPeople" type="CheckBox" parent="Buttons"]
+[node name="ShowPeople" type="CheckBox" parent="Settings/Settings"]
 layout_mode = 2
 button_pressed = true
 text = "Show People"
@@ -129,8 +147,79 @@ alignment = 2
 icon_alignment = 2
 expand_icon = true
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -163.0
+offset_top = -97.0
+offset_right = -80.0
+offset_bottom = -60.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Edit:
+"
+label_settings = SubResource("LabelSettings_myw6o")
+
+[node name="VBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -223.0
+offset_top = -51.9999
+offset_right = 301.0
+offset_bottom = 50.0001
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(0.4, 0.4)
+alignment = 1
+
+[node name="HeliEdit" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("9_fxld0")
+texture_normal = ExtResource("9_mdj1f")
+texture_pressed = ExtResource("7_ve5bo")
+stretch_mode = 0
+
+[node name="FireEdit" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("9_fxld0")
+texture_normal = ExtResource("3_3q67c")
+texture_pressed = ExtResource("8_3hsmt")
+stretch_mode = 0
+
+[node name="AgentEdit" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+toggle_mode = true
+button_group = ExtResource("9_fxld0")
+texture_normal = ExtResource("7_s7f52")
+texture_pressed = ExtResource("10_tokvk")
+stretch_mode = 0
+
+[node name="Buttons" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.736
+anchor_right = 0.11
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -55.928
+offset_right = 143.28
+offset_bottom = -20.0
+grow_vertical = 0
+alignment = 1
+
 [node name="StartBtn" type="Button" parent="Buttons"]
 layout_mode = 2
+shortcut = SubResource("Shortcut_eq40c")
 text = "(SPC) Start Sim"
 icon = ExtResource("3_3q67c")
 alignment = 2
@@ -147,6 +236,7 @@ expand_icon = true
 
 [node name="ResetBtn" type="Button" parent="Buttons"]
 layout_mode = 2
+shortcut = SubResource("Shortcut_d7yj6")
 text = "(R) Reset Sim"
 icon = ExtResource("5_ahj2s")
 alignment = 2
@@ -167,9 +257,9 @@ layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
-offset_top = -119.0
+offset_top = -143.0
 offset_right = 179.0
-offset_bottom = 120.0
+offset_bottom = 76.0
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="EvacPlan"]
@@ -180,27 +270,33 @@ label_settings = SubResource("LabelSettings_euma3")
 [node name="ItemList" type="ItemList" parent="EvacPlan"]
 layout_mode = 2
 auto_height = true
-item_count = 5
+item_count = 6
 fixed_icon_size = Vector2i(16, 16)
 item_0/text = "Idle"
 item_0/icon = ExtResource("9_aci4g")
-item_1/text = "Go to Locate Room"
+item_1/text = "GoTo TR"
 item_1/icon = ExtResource("8_4kh8f")
 item_1/selectable = false
-item_2/text = "Go to helypad"
-item_2/icon = ExtResource("9_mdj1f")
+item_2/text = "Wait"
+item_2/icon = ExtResource("14_c07me")
 item_2/selectable = false
-item_3/text = "Use boats"
-item_3/icon = ExtResource("10_v3eah")
+item_3/text = "Go to helypad"
+item_3/icon = ExtResource("9_mdj1f")
 item_3/selectable = false
-item_4/text = "JUMP!"
-item_4/icon = ExtResource("11_cq71i")
+item_4/text = "Use boats"
+item_4/icon = ExtResource("10_v3eah")
 item_4/selectable = false
+item_5/text = "JUMP!"
+item_5/icon = ExtResource("11_cq71i")
+item_5/selectable = false
 
 [connection signal="value_changed" from="Settings/Settings/SmokeDetector Slider" to="." method="_on_smoke_detector_slider_value_changed"]
 [connection signal="value_changed" from="Settings/Settings/Fire growth slider" to="." method="_on_fire_growth_slider_value_changed"]
-[connection signal="toggled" from="Buttons/ShowFire" to="." method="_on_show_fire_toggled"]
-[connection signal="toggled" from="Buttons/ShowRefuge" to="." method="_on_show_refuge_toggled"]
-[connection signal="toggled" from="Buttons/ShowPeople" to="." method="_on_show_people_toggled"]
+[connection signal="toggled" from="Settings/Settings/ShowFire" to="." method="_on_show_fire_toggled"]
+[connection signal="toggled" from="Settings/Settings/ShowRefuge" to="." method="_on_show_refuge_toggled"]
+[connection signal="toggled" from="Settings/Settings/ShowPeople" to="." method="_on_show_people_toggled"]
+[connection signal="toggled" from="VBoxContainer/HeliEdit" to="." method="_on_heli_edit_toggled"]
+[connection signal="toggled" from="VBoxContainer/FireEdit" to="." method="_on_fire_edit_toggled"]
+[connection signal="toggled" from="VBoxContainer/AgentEdit" to="." method="_on_agent_edit_toggled"]
 [connection signal="pressed" from="Buttons/StartBtn" to="." method="_on_start_btn_pressed"]
 [connection signal="pressed" from="Buttons/Settings" to="." method="_on_settings_pressed"]

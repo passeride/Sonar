@@ -1,4 +1,7 @@
-
-public class EvacStepIdle : EvacStep {
-    public EvacStepActionType StepType = EvacStepActionType.IDLE;
+public class EvacStepIdle : EvacStep
+{
+    public override EvacStepActionType StepType
+    {
+        get => EvacStepActionType.IDLE;
+    }
 }

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://c36x6jylxheu5"]
+[gd_scene load_steps=9 format=3 uid="uid://c36x6jylxheu5"]
 
 [ext_resource type="Script" path="res://world.cs" id="1_l2bnu"]
+[ext_resource type="PackedScene" uid="uid://dkjhflmhj6x2x" path="res://Fire/fire.tscn" id="2_iq125"]
 [ext_resource type="Environment" uid="uid://bvjjtw6rqpkye" path="res://Resources/base_environment.tres" id="2_xodet"]
 [ext_resource type="PackedScene" uid="uid://dfpi425b1vbgx" path="res://Agent/Agent.tscn" id="3_4pkjk"]
 [ext_resource type="PackedScene" uid="uid://sbkyob63dt3f" path="res://UI/MainUI.tscn" id="3_330ga"]
@@ -14,6 +15,7 @@ height = 50.0
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_l2bnu")
+FireScene = ExtResource("2_iq125")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(3.90338e-08, -0.834204, 0.551457, 2.41049e-08, 0.551457, 0.834204, -1, -1.92693e-08, 4.16338e-08, 68.9427, 100.353, -10.1139)

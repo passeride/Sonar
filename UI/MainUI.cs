@@ -37,6 +37,22 @@ public partial class MainUI : Control
         _settings_panel.Visible = !_settings_panel.Visible;
     }
 
+    public void _on_heli_edit_toggled(bool button_pressed)
+    {
+        GetNode<world>("/root/World").SetClickState(world.ClickState.NORMAL);
+    }
+
+    public void _on_fire_edit_toggled(bool button_pressed)
+    {
+        GetNode<world>("/root/World").SetClickState(world.ClickState.PLACE_FIRE);
+    }
+
+    public void _on_agent_edit_toggled(bool button_pressed)
+    {
+        GD.Print("Setting clickstate to move agetns");
+        GetNode<world>("/root/World").SetClickState(world.ClickState.MOVE_AGENTS);
+    }
+
     public void _on_smoke_detector_slider_value_changed(float value)
     {
         GetTree().CallGroup("SmokeDetector", "SetSmokedetectorRange", value);
@@ -50,16 +66,24 @@ public partial class MainUI : Control
         UpdateEvacSteps(0);
     }
 
-    public void UpdateEvacSteps(int currentStep ){
-        for( int i = 0; i < _evac_plan.ItemCount; i++){
-            if( i < currentStep ){
+    public void _on_reset_btn_toggled(bool button_pressed){
+        // RESET
+    }
+
+    public void UpdateEvacSteps(int currentStep)
+    {
+        for (int i = 0; i < _evac_plan.ItemCount; i++)
+        {
+            if (i < currentStep)
+            {
                 _evac_plan.SetItemDisabled(i, true);
                 _evac_plan.SetItemCustomBgColor(i, Colors.Black);
-            }else if( i == currentStep ){
-                _evac_plan.SetItemCustomBgColor(i, Colors.DarkGreen);
-            }else {
-
             }
+            else if (i == currentStep)
+            {
+                _evac_plan.SetItemCustomBgColor(i, Colors.DarkGreen);
+            }
+            else { }
         }
     }
 
@@ -78,13 +102,13 @@ public partial class MainUI : Control
                     "0:0.00##"
                 );
 
-        if (Input.IsActionJustPressed("start_sim"))
-        {
-            _on_start_btn_pressed();
-        }
-        if (Input.IsActionJustPressed("reset_sim"))
-        {
-            // _on_reset
-        }
+        //     if (Input.IsActionJustPressed("start_sim"))
+        //     {
+        //         _on_start_btn_pressed();
+        //     }
+        //     if (Input.IsActionJustPressed("reset_sim"))
+        //     {
+        //         // _on_reset
+        //     }
     }
 }

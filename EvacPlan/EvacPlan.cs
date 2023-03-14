@@ -5,9 +5,8 @@ public class EvacPlan
 {
 
     private static EvacPlan instance = null;
-    private static readonly object padlock = new object();
 
-    EvacPlan()
+    private EvacPlan()
     {
     }
 
@@ -15,16 +14,14 @@ public class EvacPlan
     {
         get
         {
-            lock (padlock)
+            if (instance == null)
             {
-                if (instance == null)
-                {
-                    instance = new EvacPlan();
-                }
-                return instance;
+                instance = new EvacPlan();
             }
+            return instance;
         }
     }
+
 	public List<EvacStep> EvacSteps = new List<EvacStep>{
 		new EvacStepIdle(),
 		new EvacStepGoTo(){
@@ -39,5 +36,14 @@ public class EvacPlan
 	};
 
 	public int CurrentEvacStep = 0;
+
+	public void IncrementStep(){
+		CurrentEvacStep += 1;
+	}
+
+	public EvacStep GetActiveStep() {
+		GD.Print("Active step is ", EvacSteps[CurrentEvacStep]);
+		return EvacSteps[CurrentEvacStep];
+	}
 
 }
