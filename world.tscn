@@ -15,8 +15,8 @@ height = 50.0
 
 [node name="World" type="Node3D"]
 script = ExtResource("1_l2bnu")
-FireScene = ExtResource("2_iq125")
 AgentScene = ExtResource("3_4pkjk")
+FireScene = ExtResource("2_iq125")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(3.5153e-08, -0.904961, 0.425495, 2.9478e-08, 0.425495, 0.904961, -1, -1.92693e-08, 4.16338e-08, 38.1046, 78.0216, -10.1139)

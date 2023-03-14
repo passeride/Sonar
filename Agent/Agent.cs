@@ -1,16 +1,15 @@
-using Godot;
-using System;
 using System.Linq;
+using Godot;
 
 public partial class Agent : CharacterBody3D
 {
-    private NavigationAgent3D _agent;
-
     [Signal]
     public delegate void GoToPositionEventHandler(Vector3 pos);
 
-    RayCast3D _see_raycast;
+    private NavigationAgent3D _agent;
     private Vector3 _initial_position;
+
+    private RayCast3D _see_raycast;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -20,20 +19,19 @@ public partial class Agent : CharacterBody3D
         _initial_position = GlobalPosition;
     }
 
-    private void Reset(){
+    private void Reset()
+    {
         GlobalPosition = _initial_position;
         _agent.TargetPosition = _initial_position;
     }
 
     private void _on_area_3d_area_entered(Area3D area)
     {
-        if (area.IsInGroup("Evac"))
-        {
-            QueueFree();
-        }
+        if (area.IsInGroup("Evac")) QueueFree();
     }
 
-    public void ShowPaths(bool showPaths){
+    public void ShowPaths(bool showPaths)
+    {
         _agent.DebugEnabled = showPaths;
     }
 
@@ -59,7 +57,7 @@ public partial class Agent : CharacterBody3D
 
             if (coll.IsInGroup("TV"))
             {
-                var evac_point = (coll.GetParent<TV>()).RequestEvac();
+                var evac_point = coll.GetParent<TV>().RequestEvac();
                 if (evac_point != null)
                 {
                     MoveTo((Vector3)evac_point);
@@ -72,19 +70,16 @@ public partial class Agent : CharacterBody3D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        if (Input.IsKeyPressed(Key.T))
-        {
-            CheckSurroundings();
-        }
+        if (Input.IsKeyPressed(Key.T)) CheckSurroundings();
     }
 
     public override void _PhysicsProcess(double delta)
     {
         if (_agent.IsNavigationFinished())
             return;
-        Vector3 currentPos = GlobalPosition;
-        Vector3 nextPos = _agent.GetNextPathPosition();
-        Vector3 velocity = (nextPos - currentPos).Normalized() * _agent.MaxSpeed;
+        var currentPos = GlobalPosition;
+        var nextPos = _agent.GetNextPathPosition();
+        var velocity = (nextPos - currentPos).Normalized() * _agent.MaxSpeed;
         // Vector3 lookAtPos = nextPos;
         // lookAtPos.Y = 2.0f;
         // GlobalRotation = lookAtPos;

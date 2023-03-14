@@ -1,16 +1,7 @@
 using Godot;
-using System;
 
 public partial class world : Node3D
 {
-    [Export]
-    public PackedScene FireScene;
-
-    [Export]
-    public PackedScene AgentScene;
-    private Camera3D _camera;
-    private RayCast3D _raycast = new RayCast3D();
-
     public enum ClickState
     {
         NORMAL,
@@ -20,10 +11,19 @@ public partial class world : Node3D
         MOVE_AGENTS
     }
 
-    private EvacPlan _evac_plan = EvacPlan.Instance;
+    private Camera3D _camera;
 
     private ClickState _click_state = ClickState.NORMAL;
+
+    private EvacPlan _evac_plan = EvacPlan.Instance;
     private MainUI _main_ui;
+    private RayCast3D _raycast = new();
+
+    [Export]
+    public PackedScene AgentScene;
+
+    [Export]
+    public PackedScene FireScene;
 
     public override void _Ready()
     {
@@ -36,7 +36,9 @@ public partial class world : Node3D
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta) { }
+    public override void _Process(double delta)
+    {
+    }
 
     public void SetClickState(ClickState newState)
     {
@@ -59,13 +61,12 @@ public partial class world : Node3D
     public override void _Input(InputEvent @event)
     {
         if (_click_state == ClickState.PLACE_FIRE)
-        {
             if (@event is InputEventMouseButton eventMouseButton && eventMouseButton.Pressed)
             {
-                Vector3 origin = _camera.ProjectRayOrigin(eventMouseButton.Position);
-                Vector3 direction = _camera.ProjectRayNormal(eventMouseButton.Position);
-                Vector3 end = origin + direction * 1000;
-                PhysicsDirectSpaceState3D state = GetWorld3D().DirectSpaceState;
+                var origin = _camera.ProjectRayOrigin(eventMouseButton.Position);
+                var direction = _camera.ProjectRayNormal(eventMouseButton.Position);
+                var end = origin + direction * 1000;
+                var state = GetWorld3D().DirectSpaceState;
                 var query = new PhysicsRayQueryParameters3D();
                 query.From = origin;
                 query.To = end;
@@ -73,7 +74,7 @@ public partial class world : Node3D
 
                 if (intersection.Count > 0)
                 {
-                    Node collision = ((Node)intersection["collider"]);
+                    var collision = (Node)intersection["collider"];
                     var fire_coll = collision.GetParentOrNull<fire>();
                     GD.Print(fire_coll);
                     if (fire_coll != null)
@@ -82,22 +83,21 @@ public partial class world : Node3D
                     }
                     else
                     {
-                        Vector3 hit_point = ((Vector3)intersection["position"]);
-                        fire fire = (fire)FireScene.Instantiate();
+                        var hit_point = (Vector3)intersection["position"];
+                        var fire = (fire)FireScene.Instantiate();
                         fire.GlobalPosition = hit_point;
                         AddChild(fire);
                     }
                 }
             }
-        }
+
         if (_click_state == ClickState.MOVE_AGENTS)
-        {
             if (@event is InputEventMouseButton eventMouseButton && eventMouseButton.Pressed)
             {
-                Vector3 origin = _camera.ProjectRayOrigin(eventMouseButton.Position);
-                Vector3 direction = _camera.ProjectRayNormal(eventMouseButton.Position);
-                Vector3 end = origin + direction * 3000;
-                PhysicsDirectSpaceState3D state = GetWorld3D().DirectSpaceState;
+                var origin = _camera.ProjectRayOrigin(eventMouseButton.Position);
+                var direction = _camera.ProjectRayNormal(eventMouseButton.Position);
+                var end = origin + direction * 3000;
+                var state = GetWorld3D().DirectSpaceState;
                 var query = new PhysicsRayQueryParameters3D();
                 query.From = origin;
                 query.To = end;
@@ -107,15 +107,15 @@ public partial class world : Node3D
                 {
                     if (eventMouseButton.ButtonIndex == MouseButton.Left)
                     {
-                        Node collision = ((Node)intersection["collider"]);
+                        var collision = (Node)intersection["collider"];
                         if (collision is Agent)
                         {
                             collision.QueueFree();
                         }
                         else
                         {
-                            Vector3 hit_point = ((Vector3)intersection["position"]);
-                            Agent agent = (Agent)AgentScene.Instantiate();
+                            var hit_point = (Vector3)intersection["position"];
+                            var agent = (Agent)AgentScene.Instantiate();
                             hit_point.Y += 2.0f;
                             agent.GlobalPosition = hit_point;
                             AddChild(agent);
@@ -123,12 +123,11 @@ public partial class world : Node3D
                     }
                     else if (eventMouseButton.ButtonIndex == MouseButton.Right)
                     {
-                        Vector3 hit_point = ((Vector3)intersection["position"]);
+                        var hit_point = (Vector3)intersection["position"];
                         GD.Print(intersection);
                         GetTree().CallGroup("Agents", "MoveTo", hit_point);
                     }
                 }
             }
-        }
     }
 }

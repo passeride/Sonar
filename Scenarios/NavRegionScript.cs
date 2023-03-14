@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class NavRegionScript : NavigationRegion3D
 {
@@ -13,13 +12,12 @@ public partial class NavRegionScript : NavigationRegion3D
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta) { }
+    public override void _Process(double delta)
+    {
+    }
 
     public void _on_timer_timeout()
     {
-        if (_mainUi.isDrillRunning)
-        {
-            BakeNavigationMesh();
-        }
+        if (_mainUi.isDrillRunning) BakeNavigationMesh();
     }
 }

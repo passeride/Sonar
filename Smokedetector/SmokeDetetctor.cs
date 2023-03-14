@@ -1,10 +1,9 @@
 using Godot;
-using System;
 
 public partial class SmokeDetetctor : Node3D
 {
     [Export]
-    private bool _has_detected_smoke = false;
+    private bool _has_detected_smoke;
 
     private CpuParticles3D _sound_viz;
 
@@ -14,7 +13,9 @@ public partial class SmokeDetetctor : Node3D
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta) { }
+    public override void _Process(double delta)
+    {
+    }
 
     public void ActivateAlarm()
     {

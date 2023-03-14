@@ -1,26 +1,27 @@
 using Godot;
-using System;
 
 public partial class fire : Area3D
 {
-    [Export]
-    private float _fire_start_size = 10.0f;
+    private float _current_scale = 1.0f;
 
     [Export]
     private float _fire_end_size = 100.0f;
 
     [Export]
     private float _fire_expand_pr_seconds = 10.0f;
-    private float _current_scale = 1.0f;
-	private bool _is_fire_running = false;
+
+    [Export]
+    private float _fire_start_size = 10.0f;
+
+    private bool _is_fire_running;
 
     // Called when the node enters the scene tree for the first time.
 
-    SphereShape3D area_collision;
-    SphereShape3D rb_collision;
-    SphereMesh fireball_mesh;
-    CylinderMesh scorth_mesh;
-    CpuParticles3D particles;
+    private SphereShape3D area_collision;
+    private SphereMesh fireball_mesh;
+    private CpuParticles3D particles;
+    private SphereShape3D rb_collision;
+    private CylinderMesh scorth_mesh;
 
     public override void _Ready()
     {
@@ -39,7 +40,7 @@ public partial class fire : Area3D
         Monitoring = true;
         set_scale(_fire_start_size);
         _current_scale = _fire_start_size;
-		_is_fire_running = true;
+        _is_fire_running = true;
     }
 
     public void Reset()
@@ -48,7 +49,7 @@ public partial class fire : Area3D
         Monitoring = false;
         set_scale(_fire_start_size);
         _current_scale = _fire_start_size;
-		_is_fire_running = false;
+        _is_fire_running = false;
     }
 
     private void set_scale(float scale)
@@ -69,10 +70,10 @@ public partial class fire : Area3D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-		if(!_is_fire_running)
-			return;
+        if (!_is_fire_running)
+            return;
 
-        var new_scale = _current_scale + (_fire_expand_pr_seconds * (float)delta);
+        var new_scale = _current_scale + _fire_expand_pr_seconds * (float)delta;
         if (new_scale <= _fire_end_size)
         {
             set_scale(new_scale);

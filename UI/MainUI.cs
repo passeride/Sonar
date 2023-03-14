@@ -1,17 +1,13 @@
 using Godot;
-using System;
 
 public partial class MainUI : Control
 {
-    PanelContainer _settings_panel;
-    RichTextLabel _time_label;
-    ItemList _evac_plan;
-    double _timestamp_start_drill = 0.0;
-    bool _drill_running = false;
-    public bool isDrillRunning
-    {
-        get => _drill_running;
-    }
+    private ItemList _evac_plan;
+    private PanelContainer _settings_panel;
+    private RichTextLabel _time_label;
+    private double _timestamp_start_drill;
+
+    public bool isDrillRunning { get; private set; }
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -70,8 +66,8 @@ public partial class MainUI : Control
     public void _on_start_btn_pressed()
     {
         GetTree().CallGroup("Fire", "StartFire");
-        _drill_running = true;
-        _timestamp_start_drill = Godot.Time.GetUnixTimeFromSystem();
+        isDrillRunning = true;
+        _timestamp_start_drill = Time.GetUnixTimeFromSystem();
         UpdateEvacSteps(0);
     }
 
@@ -79,13 +75,12 @@ public partial class MainUI : Control
     {
         GetTree().CallGroup("Fire", "Reset");
         GetTree().CallGroup("Agents", "Reset");
-        _drill_running = false;
+        isDrillRunning = false;
     }
 
     public void UpdateEvacSteps(int currentStep)
     {
-        for (int i = 0; i < _evac_plan.ItemCount; i++)
-        {
+        for (var i = 0; i < _evac_plan.ItemCount; i++)
             if (i < currentStep)
             {
                 _evac_plan.SetItemDisabled(i, true);
@@ -95,8 +90,6 @@ public partial class MainUI : Control
             {
                 _evac_plan.SetItemCustomBgColor(i, Colors.DarkGreen);
             }
-            else { }
-        }
     }
 
     public void _on_fire_growth_slider_value_changed(float value)
@@ -107,10 +100,10 @@ public partial class MainUI : Control
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        if (_drill_running)
+        if (isDrillRunning)
             _time_label.Text =
                 "Timer: "
-                + (Godot.Time.GetUnixTimeFromSystem() - _timestamp_start_drill).ToString(
+                + (Time.GetUnixTimeFromSystem() - _timestamp_start_drill).ToString(
                     "0:0.00##"
                 );
 
