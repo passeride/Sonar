@@ -33,11 +33,21 @@ public partial class world : Node3D
         _camera.AddChild(_raycast);
         _raycast.Enabled = true;
         _raycast.ClearExceptions();
+        EvacPlan.Instance.RegisterWorld(this);
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
+        EvacPlan.Instance.Update(delta);
+        _main_ui.UpdateEvacSteps(EvacPlan.Instance.CurrentEvacStep);
+    }
+
+    public void EvacStepChanged(){
+
+        _main_ui.UpdateEvacSteps(EvacPlan.Instance.CurrentEvacStep);
+        GetTree().CallGroup("TV", "setShowsEscapeRoute", true);
+        GetTree().CallGroup("Agents", "CheckSurroundings");
     }
 
     public void SetClickState(ClickState newState)
@@ -54,7 +64,7 @@ public partial class world : Node3D
 
     public void IncrementPlan()
     {
-        EvacPlan.Instance.IncrementStep();
+        EvacPlan.Instance.StartPlan();
         _main_ui.UpdateEvacSteps(EvacPlan.Instance.CurrentEvacStep);
     }
 

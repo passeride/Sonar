@@ -27,7 +27,8 @@ public partial class Agent : CharacterBody3D
 
     private void _on_area_3d_area_entered(Area3D area)
     {
-        if (area.IsInGroup("Evac")) QueueFree();
+        if (area.IsInGroup("Evac"))
+            QueueFree();
     }
 
     public void ShowPaths(bool showPaths)
@@ -45,7 +46,9 @@ public partial class Agent : CharacterBody3D
         GetNode<SpotLight3D>("SpotLight3D").Visible = true;
         var TVs = GetTree().GetNodesInGroup("TV").ToList();
 
-        var ordered_tvs = TVs.OrderBy(node => (node as Node3D).GlobalPosition.DistanceTo(GlobalPosition));
+        var ordered_tvs = TVs.OrderBy(
+            node => (node as Node3D).GlobalPosition.DistanceTo(GlobalPosition)
+        );
         var found_way = false;
 
         foreach (Node3D tv in ordered_tvs)
@@ -57,6 +60,7 @@ public partial class Agent : CharacterBody3D
             if (coll == null)
                 continue;
 
+            GD.Print(coll.GetPath());
             if (coll.IsInGroup("TV"))
             {
                 var evac_point = coll.GetParent<TV>().RequestEvac();
@@ -69,15 +73,21 @@ public partial class Agent : CharacterBody3D
             }
         }
 
-        var TR = GetTree().GetNodesInGroup("TempRefuge").ToList().FirstOrDefault() as Node3D;
-        MoveTo(TR.GlobalPosition);
+        var _evac_point = (ordered_tvs.First() as TV).RequestEvac();
+        if (_evac_point != null)
+        {
+            MoveTo((Vector3)_evac_point);
+        }
 
+        // var TR = GetTree().GetNodesInGroup("TempRefuge").ToList().FirstOrDefault() as Node3D;
+        // MoveTo(TR.GlobalPosition);
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta)
     {
-        if (Input.IsKeyPressed(Key.T)) CheckSurroundings();
+        if (Input.IsKeyPressed(Key.T))
+            CheckSurroundings();
     }
 
     public override void _PhysicsProcess(double delta)
@@ -87,10 +97,16 @@ public partial class Agent : CharacterBody3D
         var currentPos = GlobalPosition;
         var nextPos = _agent.GetNextPathPosition();
         var velocity = (nextPos - currentPos).Normalized() * _agent.MaxSpeed;
-        Vector3 lookAtPos = nextPos;
-        lookAtPos.Y = 2.0f;
-        GlobalRotation = lookAtPos;
-        LookAt(lookAtPos, Vector3.Up);
+        // look_at(path[path_index] + Vector3(move_vector.normalized().x,0,move_vector.normalized().z), Vector3(0, 1, 0)
+        //
+        LookAt(
+            nextPos + new Vector3(velocity.Normalized().X, 0.0f, velocity.Normalized().Z),
+            new Vector3(0f, 1f, 0f)
+        );
+        // Vector3 lookAtPos = nextPos;
+        // lookAtPos.Y = 2.0f;
+        // GlobalRotation = lookAtPos;
+        // LookAt(lookAtPos, Vector3.Up);
         // var test = RotationDegrees;
         // test.X = 0.0f;
         // RotationDegrees = test;

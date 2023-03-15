@@ -3,6 +3,7 @@ using Godot;
 public partial class MainUI : Control
 {
     private ItemList _evac_plan;
+    private Label _evac_plan_timer;
     private PanelContainer _settings_panel;
     private RichTextLabel _time_label;
     private double _timestamp_start_drill;
@@ -15,6 +16,7 @@ public partial class MainUI : Control
         _settings_panel = GetNode<PanelContainer>("Settings");
         _time_label = GetNode<RichTextLabel>("TimerLabel");
         _evac_plan = GetNode<ItemList>("EvacPlan/ItemList");
+        _evac_plan_timer = GetNode<Label>("EvacPlan/Timer");
     }
 
     public void _on_show_fire_toggled(bool button_pressed)
@@ -80,6 +82,25 @@ public partial class MainUI : Control
 
     public void UpdateEvacSteps(int currentStep)
     {
+        var active = EvacPlan.Instance.GetActiveStep();
+
+        if (active is EvacStepWait)
+        {
+            var wait = active as EvacStepWait;
+            if (wait.WaitDuration > 0.0)
+                _evac_plan_timer.Text =
+                    "Wait for: "
+                    + string.Format("{0:00.0}", (wait.WaitDuration - wait._time_passed));
+        }
+        else if (active is EvacStepGoTo)
+        {
+            var wait = active as EvacStepGoTo;
+            if (wait.WaitDuration > 0.0)
+                _evac_plan_timer.Text =
+                    "Wait for: "
+                    + string.Format("{0:00.0}", (wait.WaitDuration - wait._time_passed));
+        }
+
         for (var i = 0; i < _evac_plan.ItemCount; i++)
             if (i < currentStep)
             {
@@ -101,11 +122,17 @@ public partial class MainUI : Control
     public override void _Process(double delta)
     {
         if (isDrillRunning)
+        {
             _time_label.Text =
                 "Timer: "
-                + (Time.GetUnixTimeFromSystem() - _timestamp_start_drill).ToString(
-                    "0:0.00##"
-                );
+                + (Time.GetUnixTimeFromSystem() - _timestamp_start_drill).ToString("0.00##");
+            var agent_count = GetTree().GetNodesInGroup("Agents").Count;
+            GD.Print("Agents:" ,agent_count);
+            if (agent_count == 0)
+            {
+                isDrillRunning = false;
+            }
+        }
 
         //     if (Input.IsActionJustPressed("start_sim"))
         //     {

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://sbkyob63dt3f"]
+[gd_scene load_steps=32 format=3 uid="uid://sbkyob63dt3f"]
 
 [ext_resource type="Script" path="res://UI/MainUI.cs" id="1_wiage"]
 [ext_resource type="Theme" uid="uid://c1463wak03srw" path="res://Resources/UITheme.tres" id="2_vtvwu"]
@@ -64,6 +64,8 @@ outline_size = 5
 outline_color = Color(0, 0, 0, 1)
 shadow_size = 12
 shadow_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_0u2q8"]
 
 [node name="MainUI" type="Control"]
 layout_mode = 3
@@ -292,6 +294,11 @@ grow_vertical = 2
 layout_mode = 2
 text = "Evac Plan:"
 label_settings = SubResource("LabelSettings_euma3")
+
+[node name="Timer" type="Label" parent="EvacPlan"]
+layout_mode = 2
+text = "Wait"
+label_settings = SubResource("LabelSettings_0u2q8")
 
 [node name="ItemList" type="ItemList" parent="EvacPlan"]
 layout_mode = 2
